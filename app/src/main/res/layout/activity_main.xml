@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivityBottomLayout">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnBottomFragment"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:id="@+id/autoScrollview"
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:text="sadsdasdsdadasadadasdadasAAAAdasdasdasdasdadadadadasadsdasdsdadasadaAAAdasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdaAAAsdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadaAAAsdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadaAAAAadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadaAAAdasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasAAAdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdAAAadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasAAAAdsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadaAAAAdadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadAAAAadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadAAAadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadadasadsdasdsdadasadadasdadasdasdasdasdasdadadadaAAAAsadsdasdsdadasadadasdadasdasdasdasdasdadadadadaSSSSS"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </ScrollView>
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dashboard"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+
+            />
+
+
+    </FrameLayout>
+
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btnBottomFragment"
+    android:layout_width="0dp"
+    android:layout_height="90dp"
+    android:background="@color/teal_200"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/btnBottomLayout"
+    android:layout_margin="@dimen/dimen_10dp"
+    android:text="open bottom fragment"
+    android:textAlignment="center"
+    android:gravity="center"
+    />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBottomLayout"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toEndOf="@id/btnBottomFragment"
+        app:layout_constraintTop_toTopOf="@id/btnBottomFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBottomFragment"
+        android:layout_marginEnd="@dimen/dimen_10dp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="bottom view layout"
+
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

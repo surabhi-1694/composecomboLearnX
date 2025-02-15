@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="compose"
+        android:enabled="true"
+        android:icon="@drawable/ic_time"
+        android:shortcutShortLabel="@string/app_name_shorcut"
+        android:shortcutLongLabel="@string/appbar_scrolling_view_behavior">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:category="android.intent.category.DEFAULT"
+            android:data="sms:" />
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.android2o"
+            android:targetClass="com.example.android2o.MainActivity" />
+        <!-- If your shortcut is associated with multiple intents, include them
+             here. The last intent in the list determines what the user sees when
+             they launch this shortcut. -->
+        <categories android:name="android.shortcut.conversation" />
+        <capability-binding android:key="actions.intent.CREATE_MESSAGE" />
+
+
+
+    </shortcut>
+    <!-- Specify more shortcuts here. -->
+</shortcuts>

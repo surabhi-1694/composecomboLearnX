@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Android2.o</string>
+    <string name="app_name_shorcut">Shortcut</string>
+    <string name="long_msg">Android2.oAndroid2Android2Android2Android2Android2</string>
+    <string name="short_msg">Android2.o short</string>
+    <string name="txt_add">Add</string>
+    <string name="txt_delete">delete</string>
+    <string name="txt_edit">Edit</string>
+    <string name="title_activity_main_compose">MainComposeActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">PassWord</string>
+    <string name="login">Login</string>
+    <string name="btnNextWithArgs">Next Screen with passing Data</string>
+    <string name="btnNext">Next</string>
+    <string name="title_activity_route">RouteActivity</string>
+    <string name="MainRecyclerviewActivity">MainRecyclerviewActivity</string>
+    <string name="MainComposeView">MainComposeView</string>
+    <string name="welcomeScreen">welcomeScreen</string>
+    <string name="title_activity_stte_mange_compose">StteMangeComposeActivity</string>
+    <string name="title_activity_lazyrowcolumn">lazyrowcolumn</string>
+    <string name="title_activity_todo_app">TodoAppActivity</string>
+    <string name="Add">Add</string>
+
+
+</resources>
