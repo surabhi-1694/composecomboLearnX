@@ -7,7 +7,6 @@ import retrofit2.http.Query
 interface ApiInterface {
 
 //
-    //    https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=a6f7a32fb237403891836dd1dfa3cca1
     @GET("/v2/top-headlines")
     suspend fun getNewsData(
         @Query("sources") sources:String,
@@ -15,6 +14,6 @@ interface ApiInterface {
     ):Response<TopNews>
 
 
-    @GET("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=a6f7a32fb237403891836dd1dfa3cca1")
+    @GET("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=Your key")
     suspend fun getNewsDataD():Response<TopNews>
 }
