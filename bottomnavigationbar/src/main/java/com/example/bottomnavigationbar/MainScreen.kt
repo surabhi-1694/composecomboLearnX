@@ -26,10 +26,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController:NavController, dataModel: newsDataModel, modifier: Modifier) {
+fun MainScreen(dataModel: newsDataModel, modifier: Modifier) {
     val bottomNavController = rememberNavController()
     var selected by remember {
         mutableIntStateOf(0)
@@ -41,11 +42,12 @@ fun MainScreen(navController:NavController, dataModel: newsDataModel, modifier: 
         NavItem("Settings", Icons.Default.Settings)
     )
 
+    //we are using scaffold so that we can add bottom navigation , toolbar within the page :-)
     Scaffold(modifier = Modifier.fillMaxSize(),
         bottomBar = {
             BottomNavigationBar(
                 navController = bottomNavController,
-                navItemList,
+                navItemList = navItemList,
                 selected = selected, //  Pass selected
                 onItemSelected = { index -> selected = index
                     when (index) {
@@ -66,13 +68,17 @@ fun MainScreen(navController:NavController, dataModel: newsDataModel, modifier: 
             Modifier.padding(innerPadding)
         ) {
             composable<ScreenHome> {
-                HomeScreen(navController,dataModel) // Pass main navController
+                HomeScreen(bottomNavController,dataModel) // Pass main navController
             }
             composable<ScreenNotification> {
                 NotificationScreen()
             }
             composable<ScreenSetting> {
                 SettingScreen()
+            }
+            composable<ScreenList> {
+                val args = it.toRoute<ScreenList>()
+                HomeListScreen(args)
             }
         }
 
@@ -82,7 +88,7 @@ fun MainScreen(navController:NavController, dataModel: newsDataModel, modifier: 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-//fun BottomNavigationBar(navController: NavController, navItemList: List<NavItem>) {
+//fun BottomNavigationBar(navController: NavController, navItemList: List<NavItem>,selected: Int) {
     fun BottomNavigationBar(
         navController: NavController,
         navItemList: List<NavItem>,
@@ -93,7 +99,7 @@ fun MainScreen(navController:NavController, dataModel: newsDataModel, modifier: 
         navItemList.forEachIndexed { index, navItem ->
             NavigationBarItem(selected = selected == index,
                 onClick = {
-//                    navController.navigate(navItem.)
+//                    navController.navigate(navItem)
                     onItemSelected(index)
                 },
                 icon = {

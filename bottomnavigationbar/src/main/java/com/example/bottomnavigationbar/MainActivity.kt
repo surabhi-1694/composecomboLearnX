@@ -12,6 +12,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.bottomnavigationbar.ui.theme.BottomNavigationTheme
 
+// login screen -> navigate to bottomnav -> webview
+//https://medium.com/@dimasoktanugraha47/mastering-android-jetpack-compose-textfield-and-validation-3abd17c75952
 class MainActivity : ComponentActivity() {
     val dataModel:newsDataModel by viewModels()
 
@@ -20,18 +22,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            val navController = rememberNavController()
             BottomNavigationTheme {
-                NavHost(navController, startDestination = ScreenMain) {
-                    composable<ScreenMain>{
-                        MainScreen(navController = navController,dataModel= dataModel,modifier = Modifier)
-                    }
-                    composable<ScreenList> {
-                        val args = it.toRoute<ScreenList>()
-                        HomeListScreen(modifier = Modifier,args)
-                    }
-                }
-
+                MainScreen(dataModel = dataModel, modifier = Modifier)
             }
         }
     }

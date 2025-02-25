@@ -19,6 +19,7 @@ object ScreenSetting
 data class ScreenList(
     val name:String?,
     val age:Int?,
-    val address:String?
+    val address:String?,
+    val url:String?
 
 )

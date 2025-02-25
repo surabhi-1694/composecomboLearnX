@@ -26,7 +26,6 @@ class newsDataModel : ViewModel() {
     val articlesSource: LiveData<List<Source>> = _articlesSource
     val everyArticlesSource: LiveData<List<Article>> = _everyArticlesSource
     val newsApiClient = NewsApiClient(constant.apikey)
-
     init {
         fetchNewsTopHeadLines()
         getNewsByCategory()
@@ -70,20 +69,6 @@ class newsDataModel : ViewModel() {
             }
 
         })
-
-        //currentlly facing issue in this api for jsonobject conversion
-//        newsApiClient.getTopHeadlines(request, object : NewsApiClient.ArticlesResponseCallback {
-//            override fun onSuccess(response: ArticleResponse?) {
-//                response?.articles?.forEach {
-//                    Log.i("NewsAPI Response ", it.title)
-//                }
-//            }
-//
-//            override fun onFailure(throwable: Throwable?) {
-//                Log.i("NewsAPI Response  Failed", throwable?.localizedMessage.toString())
-//            }
-//
-//        })
     }
 
 
