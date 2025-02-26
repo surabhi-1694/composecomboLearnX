@@ -62,12 +62,20 @@ fun HomeScreen(navController: NavController, dataModel: newsDataModel) {
     val everyArticleSources by dataModel.everyArticlesSource.observeAsState(emptyList())
 
     val modifier = Modifier
+    /**
+    * design contains:
+     * three list one with
+     * 1. horizontal category list with search button
+     * 2. below category with selected category news list
+     * 3. below sources list we have list which will load by search keyword
+     *
+    * */
     Column(modifier = modifier.fillMaxSize()) {
         Text(
             modifier = modifier.padding(5.dp), text = "News App ",
             fontWeight = FontWeight.Bold, fontSize = 25.sp
         )
-        //horizontal list github
+        //horizontal static list of category
         categoryList(dataModel,modifier)
         Box(
             modifier = modifier.fillMaxHeight().weight(1f)
@@ -80,7 +88,7 @@ fun HomeScreen(navController: NavController, dataModel: newsDataModel) {
         Box(
             modifier = modifier.fillMaxHeight().weight(1f)
         ) {
-            Everyarticlelist(everyArticleSources, navController,modifier)
+            Everyarticlelist(everyArticleSources)
         }
     }
 }
@@ -89,10 +97,7 @@ fun HomeScreen(navController: NavController, dataModel: newsDataModel) {
 @Composable
 fun Everyarticlelist(
     everyArticleSources: List<Article>,
-    navController: NavController,
-    modifier: Modifier.Companion
 ) {
-
         if (everyArticleSources.size > 0) {
             LazyColumn(modifier = Modifier.fillMaxSize().background(Color.Transparent)) {
                 itemsIndexed(everyArticleSources) { index: Int, item: Article ->
