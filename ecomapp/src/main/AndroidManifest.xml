@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+Road map
+1.  splash screen
+2.  login page
+3.  ecom product list
+4.  product list from firebase CRUD
+5.  add product , add to cart
+6.  Admin user upload details to product
+
+-->
+
 
     <application
         android:allowBackup="true"
@@ -7,12 +18,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Android2o">
+        android:theme="@style/Theme.appsplash">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Android2o">
+            android:theme="@style/Theme.appsplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

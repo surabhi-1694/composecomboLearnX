@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kotlinCompose)
+    alias(libs.plugins.kotlinSerializable)
 }
 
 android {
@@ -49,6 +50,12 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    //navigation , serialize
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlin.serialize)
+
+    implementation(libs.splashScreen)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
