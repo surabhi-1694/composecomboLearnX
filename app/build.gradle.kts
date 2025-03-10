@@ -87,6 +87,7 @@ dependencies {
      * make sure to match version of kotlin compiler , kotlin ksp , kotlin compose compiler
      * */
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.foundation.android)
     ksp(libs.androidx.room.compiler)
 
 
