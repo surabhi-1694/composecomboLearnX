@@ -15,6 +15,10 @@ import java.util.Date
 
 class TodoViewModel:ViewModel() {
 
+    init {
+        viewModelScope
+    }
+
     private val _todoList = MutableLiveData<List<Todo>>()
     private var todoMainList = mutableListOf<Todo>()
 

@@ -18,7 +18,7 @@ object RetrofitInstance {
     private fun getInstance(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BaseURL)
-            .client(client)
+//            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

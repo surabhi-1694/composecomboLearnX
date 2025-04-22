@@ -75,7 +75,6 @@ fun TodoDBListPage(viewModel: TodoViewModel) {
                 "Enter Task"
             })})
             Button(onClick = {
-//                viewModel.addToList(inputText)
 
                 viewModel.addToDBList(inputText)
                 inputText = ""
@@ -131,6 +130,7 @@ fun TodoItem(index: Int, item: TodoDB, viewModel: TodoViewModel, onDelete: () ->
             )
             Text(text = item.title, fontSize = 16.sp,
                 color = Color.White)
+            Text(text = "test for checking ", fontSize = 20.sp, color = Color.Green)
         }
         IconButton(onClick = onDelete
 //            Log.e("ooooo","opopoopo")
