@@ -50,6 +50,7 @@ fun isPwdValid(pwd:String):Boolean{
 
         }
     }
+    return true
 }
 
 
