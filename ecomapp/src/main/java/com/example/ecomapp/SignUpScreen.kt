@@ -28,6 +28,7 @@ import androidx.navigation.NavHostController
 import com.example.ecomapp.utils.CommonButton
 import com.example.ecomapp.utils.CommonSpacer
 import com.example.ecomapp.utils.isEmailValid
+import com.example.ecomapp.utils.isPwdValid
 
 @Composable
 fun SignUpScreen(modifier: Modifier, navController: NavHostController) {
@@ -42,9 +43,12 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController) {
     var password by remember {
         mutableStateOf("")
     }
-
-
-
+    var errorMsg by remember {
+        mutableStateOf<String?>(null)
+    }
+    var errorMsgname by remember {
+        mutableStateOf<String?>(null)
+    }
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -97,28 +101,46 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController) {
         )
         CommonSpacer(10.dp)
         //Full name
+        //todo check
         OutlinedTextField(
             value = fullName, onValueChange = { onValueChange ->
                 fullName = onValueChange
+                errorMsgname = onValueChange
             },
             label = {
                 Text(text = stringResource(R.string.FullName))
+            },
+            isError = errorMsgname != null,
+            supportingText = {
+                if(errorMsgname?.isEmpty() == true){
+                    Text(text = "fullName can not be blank", color = Color.Red)
+                }
             }, modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation()
         )
         CommonSpacer(10.dp)
-
         //password
         OutlinedTextField(
             value = password, onValueChange = { onValueChange ->
                 password = onValueChange
+                errorMsg = isPwdValid(password)
             },
             label = {
                 Text(text = stringResource(R.string.Password))
-            }, modifier = Modifier.fillMaxWidth(),
+            },
+            isError = errorMsg != null,
+            supportingText = {
+                if (errorMsg != null) {
+                    Text(
+                        text = errorMsg!!,
+                        color = Color.Red
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation()
         )
-        CommonSpacer(20.dp)
+        CommonSpacer(40.dp)
 
         CommonButton(stringResource(R.string.signUpButton)) { //onClick
             navController.navigate(LoginRoute)

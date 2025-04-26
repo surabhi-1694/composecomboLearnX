@@ -15,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -23,6 +22,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ecomapp.R
+import java.util.regex.Pattern
 
 
 @Composable
@@ -43,15 +43,21 @@ fun isEmailValid(email:String):Boolean{
     return emailHasErrors
 }
 
-fun isPwdValid(pwd:String):Boolean{
-    val pwdValid by derivedStateOf {
-        if(pwd.isNotEmpty()){
+fun isPwdValid(pwd:String):String{
+    var validmsg = ""
+    val  passwordPattern:String = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+        if(pwd.isEmpty()){
             //
+            validmsg = "Password can not be Blank"
+        }else if(pwd.length <= 8 ){
+            validmsg = "Password should be minimum 8 Characters"
+        }else if(!Pattern.compile(passwordPattern).matcher(pwd).matches()){
 
+            validmsg = "Please add combination of $,*,@,digits etc. "
         }
-    }
-    return true
+    return validmsg
 }
+
 
 
 
