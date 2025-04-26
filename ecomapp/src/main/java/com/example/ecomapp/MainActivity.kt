@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
         setContent {
             Android2oTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

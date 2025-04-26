@@ -4,4 +4,10 @@
     <string name="splash_sub_info">Best App for Ecom </string>
     <string name="loginButton">Login</string>
     <string name="signUpButton">SignUp</string>
+    <string name="welcome">Welcome</string>
+    <string name="Email">Email Address</string>
+    <string name="FullName">Full Name</string>
+    <string name="Password">Password</string>
+    <string name="Email_valid">Incorrect Email Format</string>
+
 </resources>

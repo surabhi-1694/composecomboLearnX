@@ -20,6 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.ecomapp.utils.CommonButton
+import com.example.ecomapp.utils.CommonSpacer
 
 @Composable
 fun AuthScreen(modifier: Modifier, navController: NavHostController) {
@@ -37,14 +39,14 @@ fun AuthScreen(modifier: Modifier, navController: NavHostController) {
         Text(text = stringResource(R.string.splash_sub_info),
             textAlign = TextAlign.Center, fontSize = 20.sp)
         CommonSpacer(5.dp)
-        CommonButton(stringResource(R.string.loginButton)) {
+        CommonButton(stringResource(R.string.loginButton)) {//click event
             //click event
             Log.e("AuthScreen", "Login Button Click")
             Toast.makeText(context,"Login Button Click", Toast.LENGTH_LONG).show()
             navController.navigate(LoginRoute)
         }
         CommonSpacer(5.dp)
-        CommonButton(stringResource(R.string.signUpButton)) {
+        CommonButton(stringResource(R.string.signUpButton)) {//click event
             //click event
             Log.e("AuthScreen", "signUp Button Click")
             Toast.makeText(context,"signUp Button Click", Toast.LENGTH_LONG).show()
