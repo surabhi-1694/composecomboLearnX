@@ -34,6 +34,9 @@ navigationCompose = "2.8.7"
 splashscreenVersion = "1.0.1"
 foundationAndroid = "1.5.0"
 material3 = "1.0.0-alpha32"
+googleGmsGoogleServices = "4.4.2"
+firebaseAuth = "23.2.0"
+firebaseFirestoreKtx = "25.1.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -97,10 +100,15 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 splashScreen = {module = "androidx.core:core-splashscreen",version.ref = "splashscreenVersion"}
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
 
+#firebase - auth , firebase firestore
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinSerializable = { id = "org.jetbrains.kotlin.plugin.serialization",version.ref = "kotlinSerializeplugin"}
 google-devtools-ksp = { id = "com.google.devtools.ksp", version = "2.1.0-1.0.29" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

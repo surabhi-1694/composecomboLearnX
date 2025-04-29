@@ -1,5 +1,6 @@
-package com.example.ecomapp
+package com.example.ecomapp.signup
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -24,14 +26,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.ecomapp.LoginRoute
+import com.example.ecomapp.R
 import com.example.ecomapp.utils.CommonButton
 import com.example.ecomapp.utils.CommonSpacer
+import com.example.ecomapp.utils.ShowToast
 import com.example.ecomapp.utils.isEmailValid
+import com.example.ecomapp.utils.isFullnameValid
 import com.example.ecomapp.utils.isPwdValid
 
 @Composable
-fun SignUpScreen(modifier: Modifier, navController: NavHostController) {
+fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewModel: AuthViewModel = viewModel() ) {
 
 
     var email by remember {
@@ -49,6 +57,8 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController) {
     var errorMsgname by remember {
         mutableStateOf<String?>(null)
     }
+
+    val context = LocalContext.current
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -74,7 +84,7 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController) {
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Serif,
-            text = stringResource(R.string.welcome)
+            text = stringResource(R.string.createAccount)
         )
         CommonSpacer(20.dp)
         Image(
@@ -110,30 +120,24 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController) {
             label = {
                 Text(text = stringResource(R.string.FullName))
             },
-            isError = errorMsgname != null,
-            supportingText = {
-                if(errorMsgname?.isEmpty() == true){
-                    Text(text = "fullName can not be blank", color = Color.Red)
-                }
-            }, modifier = Modifier.fillMaxWidth(),
-            visualTransformation = PasswordVisualTransformation()
+             modifier = Modifier.fillMaxWidth(),
         )
         CommonSpacer(10.dp)
         //password
         OutlinedTextField(
             value = password, onValueChange = { onValueChange ->
                 password = onValueChange
-                errorMsg = isPwdValid(password)
+                errorMsg = isPwdValid(password).first
             },
             label = {
                 Text(text = stringResource(R.string.Password))
             },
+            //todo check
             isError = errorMsg != null,
             supportingText = {
-                if (errorMsg != null) {
+                if (errorMsg != null && isPwdValid(password).second== false) {
                     Text(
-                        text = errorMsg!!,
-                        color = Color.Red
+                        text = errorMsg!!
                     )
                 }
             },
@@ -143,7 +147,20 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController) {
         CommonSpacer(40.dp)
 
         CommonButton(stringResource(R.string.signUpButton)) { //onClick
-            navController.navigate(LoginRoute)
+            if(email.isNotEmpty() && fullName.isNotEmpty() && password.isNotEmpty() ){
+                authViewModel.signup(email = email,name = fullName,password = password){ status,msg ->
+                    if(status){
+                        navController.navigate(LoginRoute)
+                    }else{
+                        ShowToast(context,msg?:"Something went wrong")
+                    }
+                }
+            }else{
+                ShowToast(context,context.resources.getString(R.string.validation_msg))
+            }
+//            authViewModel.signup(email= email, name = fullName,password = password, onResult = { s,i->
+//
+//            })
         }
     }
 

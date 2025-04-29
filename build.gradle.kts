@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.kotlinCompose) apply false
     alias(libs.plugins.google.devtools.ksp) apply false
     alias(libs.plugins.kotlinSerializable) apply false
+    alias(libs.plugins.google.gms.google.services) apply false
 }

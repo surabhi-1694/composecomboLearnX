@@ -1,5 +1,6 @@
 package com.example.ecomapp.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.Spacer
@@ -43,19 +44,40 @@ fun isEmailValid(email:String):Boolean{
     return emailHasErrors
 }
 
-fun isPwdValid(pwd:String):String{
-    var validmsg = ""
+fun isFullnameValid(name:String?):Boolean{
+    val fullname by derivedStateOf {
+        if(name?.isNotEmpty() == true){
+            false
+        }else{
+            true
+        }
+    }
+    return fullname
+}
+
+
+@SuppressLint("SuspiciousIndentation")
+fun isPwdValid(pwd:String):Pair<String,Boolean>{
+    var  validmsgPair:Pair<String,Boolean> = Pair("",false)
+
+    var  validmsg = ""
     val  passwordPattern:String = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
         if(pwd.isEmpty()){
             //
             validmsg = "Password can not be Blank"
+            validmsgPair = Pair(validmsg,false)
         }else if(pwd.length <= 8 ){
             validmsg = "Password should be minimum 8 Characters"
-        }else if(!Pattern.compile(passwordPattern).matcher(pwd).matches()){
+            validmsgPair = Pair(validmsg,false)
 
+        }else if(!Pattern.compile(passwordPattern).matcher(pwd).matches()){
             validmsg = "Please add combination of $,*,@,digits etc. "
+            validmsgPair = Pair(validmsg,false)
+        }else{
+            validmsgPair = Pair("",true)
+
         }
-    return validmsg
+    return validmsgPair
 }
 
 
