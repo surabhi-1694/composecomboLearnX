@@ -36,7 +36,7 @@ import com.example.ecomapp.utils.CommonSpacer
 import com.example.ecomapp.utils.ShowToast
 import com.example.ecomapp.utils.isEmailValid
 import com.example.ecomapp.utils.isFullnameValid
-import com.example.ecomapp.utils.isPwdValid
+import com.example.ecomapp.utils.isPwdError
 
 @Composable
 fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewModel: AuthViewModel = viewModel() ) {
@@ -127,18 +127,20 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewMo
         OutlinedTextField(
             value = password, onValueChange = { onValueChange ->
                 password = onValueChange
-                errorMsg = isPwdValid(password).first
+                errorMsg = isPwdError(password).first
             },
             label = {
                 Text(text = stringResource(R.string.Password))
             },
             //todo check
-            isError = errorMsg != null,
+            isError = isPwdError(password).second,
             supportingText = {
-                if (errorMsg != null && isPwdValid(password).second== false) {
-                    Text(
-                        text = errorMsg!!
-                    )
+                if (isPwdError(password).second) {
+                    errorMsg?.let {
+                        Text(
+                            text = it
+                        )
+                    }
                 }
             },
             modifier = Modifier.fillMaxWidth(),

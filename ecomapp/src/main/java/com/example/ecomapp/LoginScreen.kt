@@ -29,7 +29,7 @@ import androidx.navigation.NavHostController
 import com.example.ecomapp.utils.CommonButton
 import com.example.ecomapp.utils.CommonSpacer
 import com.example.ecomapp.utils.isEmailValid
-import com.example.ecomapp.utils.isPwdValid
+import com.example.ecomapp.utils.isPwdError
 
 @Composable
 fun LoginScreen(modifier: Modifier, navController: NavHostController) {
@@ -90,7 +90,7 @@ fun LoginScreen(modifier: Modifier, navController: NavHostController) {
         OutlinedTextField(
             value = pwd, onValueChange = { valuechange ->
             pwd = valuechange
-            errorMsg = isPwdValid(pwd).first
+            errorMsg = isPwdError(pwd).first
 
         }, label = {
             Text("Password")

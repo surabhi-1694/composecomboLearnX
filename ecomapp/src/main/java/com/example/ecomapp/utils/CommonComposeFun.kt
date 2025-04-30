@@ -57,26 +57,29 @@ fun isFullnameValid(name:String?):Boolean{
 
 
 @SuppressLint("SuspiciousIndentation")
-fun isPwdValid(pwd:String):Pair<String,Boolean>{
+fun isPwdError(pwd:String):Pair<String,Boolean>{
     var  validmsgPair:Pair<String,Boolean> = Pair("",false)
 
     var  validmsg = ""
     val  passwordPattern:String = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
-        if(pwd.isEmpty()){
-            //
-            validmsg = "Password can not be Blank"
-            validmsgPair = Pair(validmsg,false)
-        }else if(pwd.length <= 8 ){
+//        if(pwd.isEmpty()){
+//            //
+//            validmsg = "Password can not be Blank"
+//            validmsgPair = Pair(validmsg,false)
+//        }else
+    if(pwd.isNotEmpty()){
+        if(pwd.length <= 8 ){
             validmsg = "Password should be minimum 8 Characters"
-            validmsgPair = Pair(validmsg,false)
+            validmsgPair = Pair(validmsg,true)
 
         }else if(!Pattern.compile(passwordPattern).matcher(pwd).matches()){
             validmsg = "Please add combination of $,*,@,digits etc. "
-            validmsgPair = Pair(validmsg,false)
+            validmsgPair = Pair(validmsg,true)
         }else{
-            validmsgPair = Pair("",true)
+            validmsgPair = Pair("",false)
 
         }
+    }
     return validmsgPair
 }
 
