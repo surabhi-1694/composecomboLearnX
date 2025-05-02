@@ -39,14 +39,15 @@ fun AuthScreen(modifier: Modifier, navController: NavHostController) {
         Text(text = stringResource(R.string.splash_sub_info),
             textAlign = TextAlign.Center, fontSize = 20.sp)
         CommonSpacer(5.dp)
-        CommonButton(stringResource(R.string.loginButton)) {//click event
+        CommonButton(text = stringResource(R.string.loginButton)) {
+            //click event
             //click event
             Log.e("AuthScreen", "Login Button Click")
             Toast.makeText(context,"Login Button Click", Toast.LENGTH_LONG).show()
             navController.navigate(LoginRoute)
         }
         CommonSpacer(5.dp)
-        CommonButton(stringResource(R.string.signUpButton)) {//click event
+        CommonButton(text = stringResource(R.string.signUpButton)) {//click event
             //click event
             Log.e("AuthScreen", "signUp Button Click")
             Toast.makeText(context,"signUp Button Click", Toast.LENGTH_LONG).show()

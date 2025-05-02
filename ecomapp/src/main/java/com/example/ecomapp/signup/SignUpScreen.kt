@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.ecomapp.AuthRoute
+import com.example.ecomapp.HomeRoute
 import com.example.ecomapp.LoginRoute
 import com.example.ecomapp.R
 import com.example.ecomapp.utils.CommonButton
@@ -56,6 +58,10 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewMo
     }
     var errorMsgname by remember {
         mutableStateOf<String?>(null)
+    }
+
+    var isLoading by remember {
+        mutableStateOf(false)
     }
 
     val context = LocalContext.current
@@ -148,12 +154,23 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewMo
         )
         CommonSpacer(40.dp)
 
-        CommonButton(stringResource(R.string.signUpButton)) { //onClick
-            if(email.isNotEmpty() && fullName.isNotEmpty() && password.isNotEmpty() ){
+        CommonButton(isEnable = isLoading,text = if(isLoading)"Creating Account " else stringResource(R.string.signUpButton)) {
+            //onClick
+            isLoading = true
+            if(email.isNotEmpty()
+                && fullName.isNotEmpty()
+                && password.isNotEmpty() ){
                 authViewModel.signup(email = email,name = fullName,password = password){ status,msg ->
                     if(status){
-                        navController.navigate(LoginRoute)
+                        isLoading = false
+                        navController.navigate(HomeRoute){
+                            popUpTo<AuthRoute> {
+                                inclusive = true
+                            }
+                        }
+
                     }else{
+                        isLoading = false
                         ShowToast(context,msg?:"Something went wrong")
                     }
                 }

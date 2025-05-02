@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,20 +20,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.ecomapp.signup.AuthViewModel
 import com.example.ecomapp.utils.CommonButton
 import com.example.ecomapp.utils.CommonSpacer
+import com.example.ecomapp.utils.ShowToast
 import com.example.ecomapp.utils.isEmailValid
 import com.example.ecomapp.utils.isPwdError
 
+
+//common login pwd  = Admin@1234
 @Composable
-fun LoginScreen(modifier: Modifier, navController: NavHostController) {
+fun LoginScreen(modifier: Modifier,
+                navController: NavHostController,
+                authViewModel: AuthViewModel = viewModel()) {
+    var context = LocalContext.current
+
     var emailLogin by remember {
         mutableStateOf("")
     }
@@ -108,13 +120,32 @@ fun LoginScreen(modifier: Modifier, navController: NavHostController) {
             visualTransformation = PasswordVisualTransformation()
         )
         CommonSpacer(10.dp)
+
         CommonButton(
             text = stringResource(
                 R.string.loginButton
             )
-        ) {//onclick
-            //navigate to home screen
-//            navController.navigate(LoginRoute)
+        ) {
+        //onclick
+            authViewModel.login(emailLogin,pwd){authResult,status,msg->
+                if(status){
+
+                    navController.navigate(HomeRoute){
+                        popUpTo<AuthRoute> {
+                            inclusive = true
+                        }
+                    }
+                }else{
+                    ShowToast(context = context,"Something went wrong")
+                }
+
+            }
+
         }
     }
+}
+
+@Composable
+fun disply(s: String) {
+    Text(text = "s")
 }

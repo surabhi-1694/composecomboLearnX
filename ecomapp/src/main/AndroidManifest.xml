@@ -10,6 +10,7 @@ Road map
 6.  Admin user upload details to product
 
 -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <application

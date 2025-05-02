@@ -11,3 +11,8 @@ object LoginRoute
 @Serializable
 object SignUpRoute
 
+@Serializable
+object HomeRoute
+//data class HomeRoute(val name:String,val email:String,val uid:String)
+
+

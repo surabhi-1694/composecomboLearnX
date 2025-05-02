@@ -1,7 +1,10 @@
 package com.example.ecomapp.signup
 
 import androidx.lifecycle.ViewModel
+import com.google.android.gms.tasks.Task
 import com.google.firebase.Firebase
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 
@@ -45,7 +48,17 @@ class AuthViewModel:ViewModel() {
         }
     }
 
-    fun login(){
+    //Login with firestore
+    fun login(email: String,password: String,onResult: (Task<AuthResult>?,Boolean, String?) -> Unit){
+        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener{
+            if(it.isSuccessful){
+                onResult(it,true,null)
+            }else{
+                onResult(null,false,it.exception?.localizedMessage)
+            }
+        }
+
+
 
     }
 }

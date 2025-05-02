@@ -5,13 +5,20 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.ecomapp.Home.HomeScreen
 import com.example.ecomapp.signup.SignUpScreen
+import com.google.firebase.Firebase
+import com.google.firebase.app
+import com.google.firebase.auth.auth
 
 @Composable
 fun AppNavigation(modifier: Modifier) {
     val navController = rememberNavController()
 
-    NavHost(navController, startDestination = AuthRoute) {
+    val isLoggedIn = Firebase.auth.currentUser != null
+    val firstPage = if(isLoggedIn) HomeRoute else AuthRoute
+
+    NavHost(navController, startDestination = firstPage) {
         //Start Destination
         composable<AuthRoute> {
             AuthScreen(modifier,navController)
@@ -21,6 +28,9 @@ fun AppNavigation(modifier: Modifier) {
         }
         composable<SignUpRoute> {
             SignUpScreen(modifier,navController)
+        }
+        composable<HomeRoute> {
+            HomeScreen(modifier,navController)
         }
     }
 

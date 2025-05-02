@@ -87,12 +87,13 @@ fun isPwdError(pwd:String):Pair<String,Boolean>{
 
 
 @Composable
-fun CommonButton(text:String,onClick:  ()-> Unit){
+fun CommonButton(isEnable:Boolean = false,text:String,onClick:()-> Unit){
     Button(modifier = Modifier.fillMaxWidth().padding(5.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = colorResource(id = R.color.teal_201), // Background color
             contentColor = colorResource(id = R.color.teal_700) // Text color
         ),
+        enabled = !isEnable,
         onClick = onClick
     ) {
         Text(modifier = Modifier.padding(10.dp), text = text,
