@@ -1,5 +1,6 @@
 package com.example.ecomapp
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -16,6 +17,7 @@ fun AppNavigation(modifier: Modifier) {
     val navController = rememberNavController()
 
     val isLoggedIn = Firebase.auth.currentUser != null
+    Log.e("name ","${Firebase.auth.currentUser}")
     val firstPage = if(isLoggedIn) HomeRoute else AuthRoute
 
     NavHost(navController, startDestination = firstPage) {

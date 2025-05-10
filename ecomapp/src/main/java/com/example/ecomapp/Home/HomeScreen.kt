@@ -12,6 +12,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -32,7 +33,7 @@ fun HomeScreen(modifier: Modifier, navController: NavHostController) {
         NavItem("Profile",Icons.Default.AccountCircle)
     )
     var isSelectedIndex by remember {
-        mutableStateOf(0)
+        mutableIntStateOf(0)
     }
 
     Scaffold (
@@ -65,10 +66,11 @@ fun ContentScreen(modifier: Modifier, isSelectedIndex: Int){
             HomePage(modifier)
         }
         1->{
-            FavouritePage((modifier))
+            Cart(modifier)
+
         }
         2->{
-            Cart(modifier)
+            FavouritePage((modifier))
         }
         3->{
             Profile(modifier)

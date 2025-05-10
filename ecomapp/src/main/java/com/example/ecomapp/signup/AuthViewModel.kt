@@ -5,8 +5,11 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.Firebase
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
+import kotlinx.coroutines.tasks.await
 
 class AuthViewModel:ViewModel() {
 
@@ -57,8 +60,28 @@ class AuthViewModel:ViewModel() {
                 onResult(null,false,it.exception?.localizedMessage)
             }
         }
+    }
 
+    //addOnCompleteListener can not return directly like this as it has to wait to get result
+   // instead wait for result so we can either use suspend , await or callback to get values
+    // here in login fun. we already try callback so now let's try await() to wait for result
+    suspend fun getUserName(): String? {
 
+//
+//        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return null
+//        val snapshot = Firebase.firestore.collection("Users")
+//            .document(uid)
+//            .get()
+//            .await()
+//
+//        return snapshot.getString("name")
 
+        val uId = FirebaseAuth.getInstance().currentUser?.uid?:return null
+        val snapshot = Firebase.firestore.collection("Users")
+            .document(uId)
+            .get()
+            .await()
+        //this will await to get data of document and then we get name from it
+        return snapshot.getString("name")
     }
 }
