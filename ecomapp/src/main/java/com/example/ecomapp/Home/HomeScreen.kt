@@ -67,7 +67,6 @@ fun ContentScreen(modifier: Modifier, isSelectedIndex: Int){
         }
         1->{
             Cart(modifier)
-
         }
         2->{
             FavouritePage((modifier))

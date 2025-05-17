@@ -25,6 +25,7 @@ transportationConsumer = "3.0.0"
 roomVersion = "2.6.1"
 retrofit ="2.11.0"
 coilVersion ="3.0.4"
+dotsindicator = "5.1.0"
 kotlinserialize ="1.2.2"
 kotlinSerializeplugin ="1.5.21"
 newsAPIVersion = "1.0.2"
@@ -86,6 +87,9 @@ retrofit-gson = {module = "com.squareup.retrofit2:converter-gson",version.ref="r
 #coil image lib
 coilImageCompose = {module ="io.coil-kt.coil3:coil-compose",version.ref="coilVersion"}
 coilImageNetwork = {module="io.coil-kt.coil3:coil-network-okhttp",version.ref="coilVersion"}
+
+#indicator
+dotindicator = {module = "com.tbuonomo:dotsindicator",version.ref = "dotsindicator"}
 
 #kotlinx serialization
 kotlin-serialize = {module= "org.jetbrains.kotlinx:kotlinx-serialization-json",version.ref = "kotlinserialize"}

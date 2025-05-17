@@ -84,4 +84,22 @@ class AuthViewModel:ViewModel() {
         //this will await to get data of document and then we get name from it
         return snapshot.getString("name")
     }
+
+
+    suspend fun getBannerURL(): List<String> {
+        val bannerList = Firebase.firestore.collection("Banner")
+            .document("Images")
+            .get()
+            .await()
+        return bannerList.get("urls") as List<String>
+    }
+    fun getBanners(): List<String> {
+        var bannerList:List<String> = emptyList()
+        Firebase.firestore.collection("Banner")
+            .document("Images")
+            .get().addOnCompleteListener {
+                bannerList = it.result.get("urls") as List<String>
+        }
+        return bannerList
+    }
 }

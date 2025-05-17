@@ -59,6 +59,12 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore.ktx)
 
+
+    //coil image library
+    implementation(libs.coilImageCompose)
+    implementation(libs.coilImageNetwork)
+    implementation(libs.dotindicator)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
