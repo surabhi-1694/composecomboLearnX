@@ -3,10 +3,8 @@ package com.example.ecomapp.signup
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Firebase
-import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
@@ -86,6 +84,8 @@ class AuthViewModel:ViewModel() {
     }
 
 
+    //we can get Banner list from collection in following both ways
+    // it is important to await for result and then move to ui other wise will have an empty value
     suspend fun getBannerURL(): List<String> {
         val bannerList = Firebase.firestore.collection("Banner")
             .document("Images")
@@ -93,6 +93,7 @@ class AuthViewModel:ViewModel() {
             .await()
         return bannerList.get("urls") as List<String>
     }
+
     fun getBanners(): List<String> {
         var bannerList:List<String> = emptyList()
         Firebase.firestore.collection("Banner")
