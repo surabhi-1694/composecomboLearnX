@@ -1,11 +1,13 @@
 package com.example.ecomapp.signup
 
 import androidx.lifecycle.ViewModel
+import com.example.ecomapp.Home.CategoryData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Firebase
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.tasks.await
 
@@ -87,20 +89,45 @@ class AuthViewModel:ViewModel() {
     //we can get Banner list from collection in following both ways
     // it is important to await for result and then move to ui other wise will have an empty value
     suspend fun getBannerURL(): List<String> {
-        val bannerList = Firebase.firestore.collection("Banner")
-            .document("Images")
+        val bannerList = Firebase.firestore.collection("data")
+            .document("banners")
             .get()
             .await()
-        return bannerList.get("urls") as List<String>
+        return bannerList.get("ImageUrls") as List<String>
     }
 
     fun getBanners(): List<String> {
         var bannerList:List<String> = emptyList()
-        Firebase.firestore.collection("Banner")
-            .document("Images")
+        Firebase.firestore.collection("data")
+            .document("banners")
             .get().addOnCompleteListener {
-                bannerList = it.result.get("urls") as List<String>
+                bannerList = it.result.get("ImageUrls") as List<String>
         }
         return bannerList
+    }
+
+    fun getCategoriesList():List<CategoryData>{
+        var categoryList:List<CategoryData> = emptyList()
+        Firebase.firestore.collection("data")
+            .document("stock")
+            .collection("categories")
+            .get().addOnCompleteListener {
+                if(it.isSuccessful){
+                    categoryList = it.result.documents.mapNotNull { doc->
+                        doc.toObject(CategoryData::class.java)
+                    }
+                }
+            }
+        return categoryList
+    }
+
+   suspend fun getCategories(): MutableList<DocumentSnapshot> {
+       val categoriesList = Firebase.firestore.collection("data")
+           .document("stock").collection("categories")
+           .get()
+           .await()
+       return categoriesList.documents
+
+
     }
 }
