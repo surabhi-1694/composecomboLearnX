@@ -129,11 +129,3 @@ fun BottomButton(modifier: Modifier) {
         }
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    Android2oTheme {
-//        Greeting("Android")
-//    }
-//}

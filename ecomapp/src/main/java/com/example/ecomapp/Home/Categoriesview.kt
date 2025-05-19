@@ -1,14 +1,11 @@
 package com.example.ecomapp.Home
 
 import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,12 +14,11 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -31,10 +27,15 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import coil3.compose.AsyncImage
+import com.example.ecomapp.CategoryPageRoute
+import com.example.ecomapp.GlobalNavigator
+import com.example.ecomapp.R
 import com.example.ecomapp.signup.AuthViewModel
 import com.example.ecomapp.utils.CommonSpacer
 import kotlinx.coroutines.launch
 
+//to get string from string file use stringResource
+//to get color from color.xml  use colorResource
 @Composable
 fun Categoriesview(
     modifier: Modifier,
@@ -61,23 +62,30 @@ fun Categoriesview(
         Text(text = "Categories",
             fontWeight = FontWeight.ExtraBold, fontSize = 30.sp)
         CommonSpacer(10.dp)
-        LazyRow(horizontalArrangement = Arrangement.spacedBy(20.dp)
+        LazyRow(horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(categoriesList.value) { item ->
                 Card(
-                    modifier = Modifier.size(120.dp),
+                    modifier = Modifier.size(80.dp).clickable {
+                        GlobalNavigator.navController.navigate(CategoryPageRoute(item.id))
+                    },
                     shape = RoundedCornerShape(12.dp),
-                    elevation = CardDefaults.cardElevation(10.dp)
+                    elevation = CardDefaults.cardElevation(10.dp),
+                    colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.blue_color)),
                 ) {
                     Column(modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center) {
                         AsyncImage(model = item.imageurl ,
                             contentDescription = "Categories Image",
-                            modifier = modifier.size(90.dp)
+                            modifier = modifier.size(40.dp)
                         )
+                        CommonSpacer(10.dp)
                         Text(text = item.displayname,
-                            style = TextStyle(textAlign = TextAlign.Center))
+                            style = TextStyle(textAlign = TextAlign.Center,
+                                fontSize = 12.sp,
+                                color = colorResource(id = R.color.white)
+                            ))
 
 
                     }

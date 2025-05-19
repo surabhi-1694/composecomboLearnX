@@ -1,7 +1,9 @@
 package com.example.ecomapp.signup
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.ecomapp.Home.CategoryData
+import com.example.ecomapp.Home.CategoryWiseData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Firebase
 import com.google.firebase.auth.AuthResult
@@ -129,5 +131,33 @@ class AuthViewModel:ViewModel() {
        return categoriesList.documents
 
 
+    }
+
+
+    suspend fun getCategoryWiseProduct(categoryId:String): MutableList<DocumentSnapshot> {
+        val productList = Firebase.firestore.collection("data")
+            .document("stock")
+            .collection("products")
+            .get()
+            .await()
+        return productList.documents
+    }
+
+    fun getCategoriesListwise():List<CategoryWiseData>{
+        var categoryList:List<CategoryWiseData> = emptyList()
+        Firebase.firestore.collection("data")
+            .document("stock")
+            .collection("products")
+            .get().addOnCompleteListener {
+                if(it.isSuccessful){
+                    categoryList = it.result.documents.mapNotNull { doc->
+                        doc.toObject(CategoryWiseData::class.java)
+                    }
+                }else{
+                    Log.e("exception",it.exception.toString())
+
+                }
+            }
+        return categoryList
     }
 }
