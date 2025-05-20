@@ -1,6 +1,5 @@
 package com.example.ecomapp.signup
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,18 +25,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.ecomapp.AuthRoute
 import com.example.ecomapp.HomeRoute
-import com.example.ecomapp.LoginRoute
 import com.example.ecomapp.R
 import com.example.ecomapp.utils.CommonButton
-import com.example.ecomapp.utils.CommonSpacer
+import com.example.ecomapp.utils.CommonVericalSpacer
 import com.example.ecomapp.utils.ShowToast
 import com.example.ecomapp.utils.isEmailValid
-import com.example.ecomapp.utils.isFullnameValid
 import com.example.ecomapp.utils.isPwdError
 
 @Composable
@@ -81,7 +77,7 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewMo
             fontFamily = FontFamily.Serif,
             text = "Hello There!"
         )
-        CommonSpacer(5.dp)
+        CommonVericalSpacer(5.dp)
         Text(
             modifier = modifier
                 .fillMaxWidth()
@@ -92,13 +88,13 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewMo
             fontFamily = FontFamily.Serif,
             text = stringResource(R.string.createAccount)
         )
-        CommonSpacer(20.dp)
+        CommonVericalSpacer(20.dp)
         Image(
             painterResource(R.drawable.ic_signup),
             contentDescription = "Sign up",
             modifier = modifier.size(200.dp)
         )
-        CommonSpacer(20.dp)
+        CommonVericalSpacer(20.dp)
         //Email
         OutlinedTextField(
             value = email, onValueChange = { onValueChange ->
@@ -115,7 +111,7 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewMo
             },
             modifier = Modifier.fillMaxWidth(),
         )
-        CommonSpacer(10.dp)
+        CommonVericalSpacer(10.dp)
         //Full name
         //todo check
         OutlinedTextField(
@@ -128,7 +124,7 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewMo
             },
              modifier = Modifier.fillMaxWidth(),
         )
-        CommonSpacer(10.dp)
+        CommonVericalSpacer(10.dp)
         //password
         OutlinedTextField(
             value = password, onValueChange = { onValueChange ->
@@ -152,7 +148,7 @@ fun SignUpScreen(modifier: Modifier, navController: NavHostController,authViewMo
             modifier = Modifier.fillMaxWidth(),
             visualTransformation = PasswordVisualTransformation()
         )
-        CommonSpacer(40.dp)
+        CommonVericalSpacer(40.dp)
 
         CommonButton(isEnable = isLoading,text = if(isLoading)"Creating Account " else stringResource(R.string.signUpButton)) {
             //onClick

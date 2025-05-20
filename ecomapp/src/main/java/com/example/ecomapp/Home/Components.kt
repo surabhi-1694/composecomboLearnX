@@ -5,12 +5,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -21,20 +26,26 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import coil3.compose.AsyncImage
+import com.example.ecomapp.R
 import com.example.ecomapp.signup.AuthViewModel
-import com.example.ecomapp.utils.CommonSpacer
+import com.example.ecomapp.utils.CommonHorizontalSpacer
+import com.example.ecomapp.utils.CommonVericalSpacer
 import com.tbuonomo.viewpagerdotsindicator.compose.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.compose.model.DotGraphic
 import com.tbuonomo.viewpagerdotsindicator.compose.type.ShiftIndicatorType
@@ -66,7 +77,7 @@ import kotlinx.coroutines.launch
                     fontSize = 30.sp,
                     style = TextStyle(fontFamily = FontFamily.Cursive, fontWeight = FontWeight.ExtraBold)
                 )
-                CommonSpacer(10.dp)
+                CommonVericalSpacer(10.dp)
                 Text(text = name
                     ,modifier = Modifier.padding(10.dp),
                     textAlign = TextAlign.Left,
@@ -115,7 +126,7 @@ fun BannerView(modifier: Modifier = Modifier,authViewModel: AuthViewModel){
                         .clip(RoundedCornerShape(16.dp)),
                 )
             }
-        CommonSpacer(5.dp)
+        CommonVericalSpacer(5.dp)
         DotsIndicator(
             dotCount = bannerUrl.size,
             type = ShiftIndicatorType(dotsGraphic =
@@ -125,5 +136,52 @@ fun BannerView(modifier: Modifier = Modifier,authViewModel: AuthViewModel){
         )
 
     }
+
+}
+
+@Composable
+fun productListView(modifier: Modifier = Modifier,item:CategoryWiseData){
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Card(modifier=Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+            elevation = CardDefaults.cardElevation(5.dp)) {
+            Column(modifier = modifier.fillMaxWidth().padding(10.dp)) {
+                Text(text = item.title,modifier = Modifier.fillMaxWidth(),
+                    style = TextStyle(fontSize = 20.sp,
+                        fontWeight = FontWeight.ExtraBold))
+                CommonVericalSpacer(10.dp)
+                AsyncImage(model = item.imageUrls.firstOrNull(),
+                    contentDescription = "product Image",
+                    modifier = Modifier.fillMaxWidth().height(100.dp)
+                        .clip(RoundedCornerShape(15.dp)))
+                CommonVericalSpacer(5.dp)
+
+                Text(text = item.description,
+                    style = TextStyle(fontSize = 16.sp,
+                        fontWeight = FontWeight.ExtraBold),
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 2
+                )
+                CommonVericalSpacer(5.dp)
+                Row(modifier = Modifier,
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(20.dp)) {
+                    Text(text = "\u20B9${item.price}",
+                        style = TextStyle(fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold)
+                    )
+                    Text(text = "\u20B9${item.actualPrice}",
+                        style = TextStyle(fontSize = 14.sp,
+                            fontWeight = FontWeight.Normal, textDecoration = TextDecoration.LineThrough))
+                    IconButton(onClick = {
+                    }, modifier = Modifier.padding(0.dp)) {
+                        Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "add to cart")
+                    }
+                }
+            }
+
+        }
+    }
+
 
 }

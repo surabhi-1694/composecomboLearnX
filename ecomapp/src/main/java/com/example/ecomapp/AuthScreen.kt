@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.ecomapp.utils.CommonButton
-import com.example.ecomapp.utils.CommonSpacer
+import com.example.ecomapp.utils.CommonVericalSpacer
 
 @Composable
 fun AuthScreen(modifier: Modifier, navController: NavHostController) {
@@ -31,14 +31,14 @@ fun AuthScreen(modifier: Modifier, navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally) {
         Image(painter = painterResource(R.drawable.ic_shopping),
             contentDescription = "splashscreen")
-        CommonSpacer(5.dp)
+        CommonVericalSpacer(5.dp)
         Text(text = stringResource(R.string.splash_info),
             textAlign = TextAlign.Center, style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 30.sp)
         )
-        CommonSpacer(5.dp)
+        CommonVericalSpacer(5.dp)
         Text(text = stringResource(R.string.splash_sub_info),
             textAlign = TextAlign.Center, fontSize = 20.sp)
-        CommonSpacer(5.dp)
+        CommonVericalSpacer(5.dp)
         CommonButton(text = stringResource(R.string.loginButton)) {
             //click event
             //click event
@@ -46,7 +46,7 @@ fun AuthScreen(modifier: Modifier, navController: NavHostController) {
             Toast.makeText(context,"Login Button Click", Toast.LENGTH_LONG).show()
             navController.navigate(LoginRoute)
         }
-        CommonSpacer(5.dp)
+        CommonVericalSpacer(5.dp)
         CommonButton(text = stringResource(R.string.signUpButton)) {//click event
             //click event
             Log.e("AuthScreen", "signUp Button Click")

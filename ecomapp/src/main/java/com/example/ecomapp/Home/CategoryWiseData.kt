@@ -6,7 +6,7 @@ data class CategoryWiseData(
     val price:String="",
     val actualPrice:String = "",
     val description:String="",
-    val imageUrls:List<String> = emptyList(),
     //work as ref. key for category
-    val categoryId:String
+    val categoryId:String="",
+    val imageUrls:List<String> = emptyList()
 )

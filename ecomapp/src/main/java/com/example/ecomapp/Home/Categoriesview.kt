@@ -31,7 +31,7 @@ import com.example.ecomapp.CategoryPageRoute
 import com.example.ecomapp.GlobalNavigator
 import com.example.ecomapp.R
 import com.example.ecomapp.signup.AuthViewModel
-import com.example.ecomapp.utils.CommonSpacer
+import com.example.ecomapp.utils.CommonVericalSpacer
 import kotlinx.coroutines.launch
 
 //to get string from string file use stringResource
@@ -57,11 +57,11 @@ fun Categoriesview(
         }
 
     }
-    CommonSpacer(10.dp)
+    CommonVericalSpacer(10.dp)
     Column {
         Text(text = "Categories",
             fontWeight = FontWeight.ExtraBold, fontSize = 30.sp)
-        CommonSpacer(10.dp)
+        CommonVericalSpacer(10.dp)
         LazyRow(horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(categoriesList.value) { item ->
@@ -80,7 +80,7 @@ fun Categoriesview(
                             contentDescription = "Categories Image",
                             modifier = modifier.size(40.dp)
                         )
-                        CommonSpacer(10.dp)
+                        CommonVericalSpacer(10.dp)
                         Text(text = item.displayname,
                             style = TextStyle(textAlign = TextAlign.Center,
                                 fontSize = 12.sp,

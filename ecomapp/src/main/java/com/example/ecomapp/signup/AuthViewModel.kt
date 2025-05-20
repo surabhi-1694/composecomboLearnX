@@ -138,21 +138,27 @@ class AuthViewModel:ViewModel() {
         val productList = Firebase.firestore.collection("data")
             .document("stock")
             .collection("products")
+            .whereEqualTo("categoryId",categoryId.trim())
             .get()
             .await()
         return productList.documents
     }
 
-    fun getCategoriesListwise():List<CategoryWiseData>{
+    fun getCategoriesListwise(categoryId:String):List<CategoryWiseData>{
+        Log.e("categoryData_categoryId",categoryId)
         var categoryList:List<CategoryWiseData> = emptyList()
         Firebase.firestore.collection("data")
             .document("stock")
             .collection("products")
+            .whereEqualTo("categoryId",categoryId.trim())
             .get().addOnCompleteListener {
                 if(it.isSuccessful){
+                    Log.e("categoryData","isSuccessful")
                     categoryList = it.result.documents.mapNotNull { doc->
                         doc.toObject(CategoryWiseData::class.java)
                     }
+                    Log.e("categoryData",it.result.documents.size.toString())
+
                 }else{
                     Log.e("exception",it.exception.toString())
 

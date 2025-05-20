@@ -119,7 +119,12 @@ fun CommonButton(isEnable:Boolean = false,text:String,onClick:()-> Unit){
 }
 
 @Composable
-fun CommonSpacer(spaceValue: Dp) {
+fun CommonVericalSpacer(spaceValue: Dp) {
+    Spacer(modifier = Modifier.height(spaceValue))
+}
+
+@Composable
+fun CommonHorizontalSpacer(spaceValue: Dp) {
     Spacer(modifier = Modifier.height(spaceValue))
 }
 //
