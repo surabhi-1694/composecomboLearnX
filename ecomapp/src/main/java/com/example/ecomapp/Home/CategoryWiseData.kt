@@ -1,5 +1,9 @@
 package com.example.ecomapp.Home
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CategoryWiseData(
     val id:String="",
     val title:String="",
@@ -9,4 +13,4 @@ data class CategoryWiseData(
     //work as ref. key for category
     val categoryId:String="",
     val imageUrls:List<String> = emptyList()
-)
+):Parcelable

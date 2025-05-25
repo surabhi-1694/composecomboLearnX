@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<!--
+    <!--
 Road map
 1.  splash screen
 2.  login page
@@ -8,10 +8,8 @@ Road map
 4.  product list from firebase CRUD
 5.  add product , add to cart
 6.  Admin user upload details to product
-
--->
+    -->
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:allowBackup="true"
@@ -20,6 +18,10 @@ Road map
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.appsplash">
+        <activity
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+            android:name=".pages.ProductDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

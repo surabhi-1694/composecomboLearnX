@@ -1,6 +1,8 @@
 package com.example.ecomapp.Home
 
+import android.content.Intent
 import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -43,15 +46,18 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import coil3.compose.AsyncImage
 import com.example.ecomapp.R
+import com.example.ecomapp.pages.ProductDetailActivity
 import com.example.ecomapp.signup.AuthViewModel
 import com.example.ecomapp.utils.CommonHorizontalSpacer
 import com.example.ecomapp.utils.CommonVericalSpacer
+import com.example.ecomapp.utils.ShowToast
 import com.tbuonomo.viewpagerdotsindicator.compose.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.compose.model.DotGraphic
 import com.tbuonomo.viewpagerdotsindicator.compose.type.ShiftIndicatorType
 import kotlinx.coroutines.launch
 
 //https://developer.android.com/develop/ui/compose/quick-guides/collections/display-images?hl=en
+
 
 @Composable
  fun HeaderView(modifier: Modifier, authViewModel: AuthViewModel) {
@@ -141,21 +147,30 @@ fun BannerView(modifier: Modifier = Modifier,authViewModel: AuthViewModel){
 
 @Composable
 fun productListView(modifier: Modifier = Modifier,item:CategoryWiseData){
+    val context = LocalContext.current
+
     Column(modifier = Modifier.fillMaxWidth()) {
-        Card(modifier=Modifier.fillMaxWidth(),
+        Card(modifier=Modifier.fillMaxWidth().clickable {
+            //check
+            val intent = Intent(context,ProductDetailActivity::class.java)
+            intent.putExtra("productITem",item)
+            context.startActivity(Intent(context,ProductDetailActivity::class.java))
+        },
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(5.dp)) {
             Column(modifier = modifier.fillMaxWidth().padding(10.dp)) {
                 Text(text = item.title,modifier = Modifier.fillMaxWidth(),
-                    style = TextStyle(fontSize = 20.sp,
-                        fontWeight = FontWeight.ExtraBold))
+                    style = TextStyle(fontSize = 16.sp,
+                        fontWeight = FontWeight.ExtraBold),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
                 CommonVericalSpacer(10.dp)
                 AsyncImage(model = item.imageUrls.firstOrNull(),
                     contentDescription = "product Image",
                     modifier = Modifier.fillMaxWidth().height(100.dp)
                         .clip(RoundedCornerShape(15.dp)))
                 CommonVericalSpacer(5.dp)
-
                 Text(text = item.description,
                     style = TextStyle(fontSize = 16.sp,
                         fontWeight = FontWeight.ExtraBold),
@@ -174,6 +189,8 @@ fun productListView(modifier: Modifier = Modifier,item:CategoryWiseData){
                         style = TextStyle(fontSize = 14.sp,
                             fontWeight = FontWeight.Normal, textDecoration = TextDecoration.LineThrough))
                     IconButton(onClick = {
+                        //move to another activity
+                        ShowToast(context,"Add to Cart")
                     }, modifier = Modifier.padding(0.dp)) {
                         Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "add to cart")
                     }

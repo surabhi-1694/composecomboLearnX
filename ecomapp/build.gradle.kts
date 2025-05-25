@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinCompose)
     alias(libs.plugins.kotlinSerializable)
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.parcelize)
 }
 
 android {
@@ -64,6 +65,10 @@ dependencies {
     implementation(libs.coilImageCompose)
     implementation(libs.coilImageNetwork)
     implementation(libs.dotindicator)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

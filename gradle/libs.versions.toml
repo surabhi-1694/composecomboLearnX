@@ -115,4 +115,5 @@ kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kot
 kotlinSerializable = { id = "org.jetbrains.kotlin.plugin.serialization",version.ref = "kotlinSerializeplugin"}
 google-devtools-ksp = { id = "com.google.devtools.ksp", version = "2.1.0-1.0.29" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+parcelize = {id="kotlin-parcelize"}
 
