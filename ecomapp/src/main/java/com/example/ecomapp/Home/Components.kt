@@ -154,7 +154,7 @@ fun productListView(modifier: Modifier = Modifier,item:CategoryWiseData){
             //check
             val intent = Intent(context,ProductDetailActivity::class.java)
             intent.putExtra("productITem",item)
-            context.startActivity(Intent(context,ProductDetailActivity::class.java))
+            context.startActivity(intent)
         },
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(5.dp)) {
