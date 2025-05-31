@@ -16,12 +16,6 @@ class ImagepagerAdapter(private val imageUrls:ArrayList<String>) :RecyclerView.A
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = GalleryItemviewBinding.inflate(LayoutInflater.from(parent.context),
             parent,false)
-
-//        val imageView = ImageView(parent.context).apply {
-//            layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
-//            scaleType = ImageView.ScaleType.CENTER_INSIDE
-//        }
-
         return ViewHolder(view)
     }
 
