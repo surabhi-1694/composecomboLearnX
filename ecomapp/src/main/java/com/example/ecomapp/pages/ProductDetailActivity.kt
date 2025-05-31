@@ -44,9 +44,15 @@ class ProductDetailActivity : AppCompatActivity() {
             txtTitle.text = videoItemData?.title
             txtDescription.text = videoItemData?.description
             txtPrice.text = "\u20B9${videoItemData?.price}"
-            txtActualPrice.text = "\u20B9${videoItemData?.actualPrice}"
+            txtActualPrice.apply {
+                paint.isStrikeThruText = true
+                text = "\u20B9${videoItemData?.actualPrice}"
+            }
             viewPager.adapter = ImagepagerAdapter(videoItemData?.imageUrls as ArrayList)
-            TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
+
+            // Set up your ViewPager ...
+            dotsIndicator.attachTo(viewPager)
+//            TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
 
         }
 

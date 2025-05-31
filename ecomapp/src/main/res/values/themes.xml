@@ -22,13 +22,13 @@
     <style name="txt_title">
         <item name="android:textColor">@color/purple_200</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/dimen_18sp</item>
+        <item name="android:textSize">@dimen/dimen_20sp</item>
     </style>
 
 
     <style name="txt_desc">
         <item name="android:textColor">@color/greyblack_color</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textSize">@dimen/dimen_14sp</item>
     </style>
 </resources>

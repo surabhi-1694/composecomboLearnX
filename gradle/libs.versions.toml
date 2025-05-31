@@ -38,6 +38,7 @@ material3 = "1.0.0-alpha32"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.2.0"
 firebaseFirestoreKtx = "25.1.4"
+viewpagerIndicator = "0.8.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
