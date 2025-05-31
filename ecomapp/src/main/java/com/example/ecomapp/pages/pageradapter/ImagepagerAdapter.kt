@@ -2,13 +2,9 @@ package com.example.ecomapp.pages.pageradapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil3.load
-import coil3.request.transformations
-import coil3.transform.CircleCropTransformation
 import com.example.ecomapp.databinding.GalleryItemviewBinding
 
 class ImagepagerAdapter(private val imageUrls:ArrayList<String>) :RecyclerView.Adapter<ImagepagerAdapter.ViewHolder>() {

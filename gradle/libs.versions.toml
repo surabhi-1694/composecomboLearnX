@@ -1,7 +1,6 @@
 [versions]
 agp = "8.3.2"
 kotlin = "2.1.0"
-kotlinCompose = "1.5.2"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -16,7 +15,6 @@ constraintlayout = "2.1.4"
 legacySupportV4 = "1.0.0"
 lifecycleLivedataKtx = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
-lifecycleViewmoelCompose = "2.8.7"
 runtimeCompose = "1.7.6"
 fragmentKtx = "1.8.2"
 recyclerview = "1.3.2"
@@ -34,11 +32,9 @@ material3Android = "1.3.1"
 navigationCompose = "2.8.7"
 splashscreenVersion = "1.0.1"
 foundationAndroid = "1.5.0"
-material3 = "1.0.0-alpha32"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.2.0"
 firebaseFirestoreKtx = "25.1.4"
-viewpagerIndicator = "0.8.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -98,7 +94,6 @@ kotlin-serialize = {module= "org.jetbrains.kotlinx:kotlinx-serialization-json",v
 #newsapi dependancy
 newsApi = {module = "com.github.KwabenBerko:News-API-Java",version.ref = "newsAPIVersion"}
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
-androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 #splash screen
