@@ -39,6 +39,7 @@ fun AuthScreen(modifier: Modifier, navController: NavHostController) {
         Text(text = stringResource(R.string.splash_sub_info),
             textAlign = TextAlign.Center, fontSize = 20.sp)
         CommonVericalSpacer(5.dp)
+        //login
         CommonButton(text = stringResource(R.string.loginButton)) {
             //click event
             //click event
@@ -47,6 +48,7 @@ fun AuthScreen(modifier: Modifier, navController: NavHostController) {
             navController.navigate(LoginRoute)
         }
         CommonVericalSpacer(5.dp)
+        //sign up
         CommonButton(text = stringResource(R.string.signUpButton)) {//click event
             //click event
             Log.e("AuthScreen", "signUp Button Click")
