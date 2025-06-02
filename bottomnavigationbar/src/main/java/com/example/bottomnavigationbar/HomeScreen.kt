@@ -280,7 +280,8 @@ fun categoryList(dataModel: newsDataModel, modifier: Modifier) {
                 .fillMaxWidth(0.6f)
                 .height(50.dp)
                 .border(1.dp, color = Color.Gray, shape = CircleShape)
-                .clip(CircleShape), value = searchString, onValueChange = {
+                .clip(CircleShape),
+                value = searchString, onValueChange = {
                 searchString = it
 
             },
