@@ -85,10 +85,13 @@ fun NotificationScreen(){
         OutlinedTextField(modifier = Modifier.fillMaxWidth().height(90.dp),
             value = searchString, onValueChange = {
                 searchString = it
+                if(it.isEmpty()){
+                    filterList = categoryList
+                }else if(it.length == 2){
+                    filterList =   filterContactsSlidingWindow(contacts = categoryList,searchString)
+                }
             }, trailingIcon = {
                 IconButton(onClick = {
-//                    filterList = emptyList()
-
                     //verify
                     filterList =   filterContactsSlidingWindow(contacts = categoryList,searchString)
                 }) {
@@ -111,7 +114,7 @@ fun NotificationScreen(){
                     colors = CardDefaults.cardColors(containerColor = Color.Cyan)
                 ) {
                     Text(
-                        text = categoryList[index],
+                        text = filterList[index],
                         modifier = Modifier.padding(16.dp),
                         fontSize = 18.sp
                     )
@@ -142,8 +145,7 @@ fun slidingWindowMatch(text: String, pattern: String): Boolean {
 
     if (m > n) return false
 
-    for (i in 0..(n - m)) {
-        val window = text.substring(i, i + m)
+    for (i in 0..(n - m)) { val window = text.substring(i, i + m)
         if (window == pattern) return true
     }
 
