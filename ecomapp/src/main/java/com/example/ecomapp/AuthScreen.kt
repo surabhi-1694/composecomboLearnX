@@ -19,12 +19,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.ecomapp.utils.CommonButton
 import com.example.ecomapp.utils.CommonVericalSpacer
 
 @Composable
-fun AuthScreen(modifier: Modifier, navController: NavHostController) {
+fun AuthScreen(modifier: Modifier,
+               navController: NavHostController,
+               viewModel: DataStoreModel = viewModel()
+) {
     val context = LocalContext.current
     Column(modifier.fillMaxSize().padding(10.dp),
         verticalArrangement = Arrangement.Center,
@@ -42,7 +46,9 @@ fun AuthScreen(modifier: Modifier, navController: NavHostController) {
         //login
         CommonButton(text = stringResource(R.string.loginButton)) {
             //click event
-            //click event
+
+            viewModel.setPrefBadgeCount(50)
+
             Log.e("AuthScreen", "Login Button Click")
             Toast.makeText(context,"Login Button Click", Toast.LENGTH_LONG).show()
             navController.navigate(LoginRoute)

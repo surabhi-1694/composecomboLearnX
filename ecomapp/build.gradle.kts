@@ -61,6 +61,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore.ktx)
 
+    //datastore
+    implementation(libs.androidx.dataStorePreference)
 
     //coil image library
     implementation(libs.coilImageCompose)

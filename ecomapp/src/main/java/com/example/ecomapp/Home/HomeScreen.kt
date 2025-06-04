@@ -6,11 +6,15 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -18,14 +22,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.ecomapp.DataStoreModel
 import com.example.ecomapp.pages.Cart
 import com.example.ecomapp.pages.FavouritePage
 import com.example.ecomapp.pages.HomePage
 import com.example.ecomapp.pages.Profile
 
 @Composable
-fun HomeScreen(modifier: Modifier, navController: NavHostController) {
+fun HomeScreen(modifier: Modifier,
+               navController: NavHostController,
+               viewmodel: DataStoreModel = viewModel()
+) {
     val navItemList = listOf(
         NavItem("Home", Icons.Default.Home),
         NavItem("Cart",Icons.Default.ShoppingCart),
@@ -36,6 +45,9 @@ fun HomeScreen(modifier: Modifier, navController: NavHostController) {
         mutableIntStateOf(0)
     }
 
+    //just like observing from livedata observer we are observing this as collectstate
+    val prefBadgeCount by viewmodel.intBadgeValue.collectAsState()
+
     Scaffold (
         bottomBar = {
             NavigationBar {
@@ -45,8 +57,16 @@ fun HomeScreen(modifier: Modifier, navController: NavHostController) {
                             isSelectedIndex = index
                         },
                         icon = {
-                            Icon(imageVector = navItem.icon,
-                                contentDescription = navItem.label)
+                            BadgedBox( badge = {
+                                Badge(){
+                                    Text(text =  prefBadgeCount.toString())
+                                }
+                            }
+                            ) {
+                                Icon(imageVector = navItem.icon,
+                                    contentDescription = navItem.label)
+                            }
+
                     })
                 }
 
