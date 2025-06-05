@@ -1,5 +1,7 @@
 [versions]
 agp = "8.3.2"
+androidxComposeBom = "2025.06.00"
+composeBomVersion = "2024.09.02"
 kotlin = "2.1.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -39,7 +41,12 @@ dataStorePref = "1.1.7"
 hiltPlugin = "2.51.1"
 
 [libraries]
+androidx-compose-bom-v20240902 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
+androidx-compose-bom-v20250600 = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBom" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
+androidx-runtime = { module = "androidx.compose.runtime:runtime" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -69,6 +76,8 @@ androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview"
 
 #Jetpack Compose integration
 androidx-navigation = {group ="androidx.navigation",name = "navigation-compose",version.ref = "navversion"}
+material3 = { module = "androidx.compose.material3:material3" }
+runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
 transportation-consumer = { group = "com.google.android.libraries.mapsplatform.transportation", name = "transportation-consumer", version.ref = "transportationConsumer" }
 
 #room-database={group ="androidx.room",name="room-runtime",version = "roomVersion"}
@@ -112,6 +121,8 @@ hilt-compiler = {group = "com.google.dagger" ,name ="hilt-android-compiler",vers
 
 #datastore preference
 androidx-dataStorePreference = {module = "androidx.datastore:datastore-preferences",version.ref = "dataStorePref"}
+ui = { module = "androidx.compose.ui:ui" }
+ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

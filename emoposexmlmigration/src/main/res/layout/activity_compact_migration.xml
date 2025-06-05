@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CompactMigrationActivity">
+
+<!--here we are trying to migrate from xml to composeview
+we will keep few view as its and replace few with compose -->
+    <ScrollView
+        android:id="@+id/scrlview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp">
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="first name "
+                android:layout_margin="@dimen/dimen_0dp" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtname1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtname"
+                app:layout_constraintStart_toStartOf="@+id/edtname"
+                app:layout_constraintEnd_toEndOf="@+id/edtname"
+                android:hint="first name "
+                android:layout_margin="@dimen/dimen_0dp" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtname2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtname1"
+                app:layout_constraintStart_toStartOf="@+id/edtname1"
+                app:layout_constraintEnd_toEndOf="@+id/edtname1"
+                android:hint="first name "
+                android:layout_margin="@dimen/dimen_0dp" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtname3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtname2"
+                app:layout_constraintStart_toStartOf="@+id/edtname2"
+                app:layout_constraintEnd_toEndOf="@+id/edtname2"
+                android:hint="first name "
+                android:layout_margin="@dimen/dimen_0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClickMe"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Click Me"
+                app:layout_constraintTop_toBottomOf="@+id/edtname3"
+                app:layout_constraintStart_toStartOf="@+id/edtname3"
+                app:layout_constraintEnd_toEndOf="@+id/edtname3"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtSeekBarText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/seekBarText"
+                app:layout_constraintTop_toBottomOf="@+id/btnClickMe"
+                app:layout_constraintStart_toStartOf="@+id/btnClickMe"
+                app:layout_constraintEnd_toEndOf="@+id/btnClickMe"/>
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:progressBackgroundTint="@color/red"
+                android:progressTint="@color/green"
+                app:layout_constraintTop_toBottomOf="@+id/txtSeekBarText"
+                app:layout_constraintStart_toStartOf="@+id/txtSeekBarText" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/dimen_20dp"
+                android:layout_height="@dimen/dimen_20dp"
+                android:src="@drawable/baseline_hexagon_24"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+
+<!--            here we will replace the text view and two button in compose
+                 - in order to gradually replace views comment out views which need to replace and place Composeview instead of it
+-->
+<!--            comment start -->
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:id="@+id/txtName"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/image"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/image"-->
+<!--                android:layout_marginStart="@dimen/dimen_5dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/image"-->
+<!--                android:text="@string/hexagone"/>-->
+
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btnClickMe1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="Click Me 1"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/image"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btnClickMe2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:text="Click Me 2"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/btnClickMe1"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/btnClickMe1"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/btnClickMe1"/>-->
+<!--comment end -->
+
+<!--            ADD ComposeView -->
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/compose_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dimen_5dp"
+                app:layout_constraintTop_toTopOf="@id/image"
+                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
