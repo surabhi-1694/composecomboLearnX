@@ -4,16 +4,20 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /*
 //here we are creating viewmodel with AndroidViewModel
 *  so that we can use application as context
 *  since we are creating common model class to manage getter setter for Pref. we need context to be passed in for DataStoreInstance
 * */
-class DataStoreModel(application: Application):AndroidViewModel(application = application) {
+@HiltViewModel
+class DataStoreModel @Inject constructor(application: Application):
+    AndroidViewModel(application = application) {
 
 init {
     getPrefBadgeCount()

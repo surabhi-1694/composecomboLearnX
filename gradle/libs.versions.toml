@@ -36,6 +36,7 @@ googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.2.0"
 firebaseFirestoreKtx = "25.1.4"
 dataStorePref = "1.1.7"
+hiltPlugin = "2.51.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -105,10 +106,12 @@ androidx-foundation-android = { group = "androidx.compose.foundation", name = "f
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
+#hilt android
+hilt-android = {group = "com.google.dagger" ,name ="hilt-android",version.ref ="hiltPlugin"}
+hilt-compiler = {group = "com.google.dagger" ,name ="hilt-android-compiler",version.ref ="hiltPlugin"}
 
 #datastore preference
 androidx-dataStorePreference = {module = "androidx.datastore:datastore-preferences",version.ref = "dataStorePref"}
-
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -117,5 +120,7 @@ kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kot
 kotlinSerializable = { id = "org.jetbrains.kotlin.plugin.serialization",version.ref = "kotlinSerializeplugin"}
 google-devtools-ksp = { id = "com.google.devtools.ksp", version = "2.1.0-1.0.29" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+hilt-android ={id ="com.google.dagger.hilt.android", version.ref = "hiltPlugin"}
+
 parcelize = {id="kotlin-parcelize"}
 

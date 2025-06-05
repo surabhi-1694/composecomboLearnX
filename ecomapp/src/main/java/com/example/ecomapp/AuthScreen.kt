@@ -46,8 +46,8 @@ fun AuthScreen(modifier: Modifier,
         //login
         CommonButton(text = stringResource(R.string.loginButton)) {
             //click event
-
-            viewModel.setPrefBadgeCount(50)
+            //set value to data store preference
+            viewModel.setPrefBadgeCount(5)
 
             Log.e("AuthScreen", "Login Button Click")
             Toast.makeText(context,"Login Button Click", Toast.LENGTH_LONG).show()
