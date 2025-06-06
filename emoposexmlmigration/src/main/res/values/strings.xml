@@ -2,4 +2,7 @@
     <string name="app_name">emoposexmlmigration</string>
     <string name="seekBarText">SeekBarText</string>
     <string name="hexagone">Hexagone</string>
+    <string name="btncompose1">Compose Button 1</string>
+    <string name="btncompose2">Compose Button 2</string>
+    <string name="textcompose">Compose Text</string>
 </resources>

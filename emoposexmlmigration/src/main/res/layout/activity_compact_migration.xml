@@ -138,12 +138,23 @@ we will keep few view as its and replace few with compose -->
 <!--            ADD ComposeView -->
 
             <androidx.compose.ui.platform.ComposeView
-                android:id="@+id/compose_view"
+                android:id="@+id/compose_txt_view"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/dimen_5dp"
                 app:layout_constraintTop_toTopOf="@id/image"
                 app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/compose_btn_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dimen_5dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                app:layout_constraintTop_toBottomOf="@+id/compose_txt_view"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
