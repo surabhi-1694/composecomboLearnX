@@ -16,7 +16,7 @@ import com.example.emoposexmlmigration.composefuns.composeButtonUI
 import com.example.emoposexmlmigration.composefuns.composeMigrateView
 import com.example.emoposexmlmigration.databinding.ActivityCompactMigrationBinding
 
-class CompactMigrationActivity : AppCompatActivity() {
+class CompactMigrationComposeActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityCompactMigrationBinding
 
@@ -37,12 +37,12 @@ class CompactMigrationActivity : AppCompatActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally) {
                         //first Button
                         composeButtonUI(btntext = stringResource(R.string.btncompose1), onClickCallBack = {
-                            Toast.makeText(this@CompactMigrationActivity,"Btn 1 Clicked ",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@CompactMigrationComposeActivity,"Btn 1 Clicked ",Toast.LENGTH_LONG).show()
                         })
 
                         //second Button
                         composeButtonUI(btntext = stringResource(R.string.btncompose2), onClickCallBack = {
-                            Toast.makeText(this@CompactMigrationActivity,"Btn 2 Clicked ",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@CompactMigrationComposeActivity,"Btn 2 Clicked ",Toast.LENGTH_LONG).show()
                         })
                     }
 

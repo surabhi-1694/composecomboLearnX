@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CompactMigrationActivity">
+    tools:context=".CompactMigrationComposeActivity">
 
 <!--here we are trying to migrate from xml to composeview
 we will keep few view as its and replace few with compose -->

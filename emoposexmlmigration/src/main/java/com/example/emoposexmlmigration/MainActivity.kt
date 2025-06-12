@@ -25,8 +25,15 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        //
         binding.btnAppcompact.setOnClickListener{
-           startActivity(Intent(this@MainActivity,CompactMigrationActivity::class.java))
+           startActivity(Intent(this@MainActivity,CompactMigrationComposeActivity::class.java))
+        }
+
+        binding.btnComposeXmLScreen.setOnClickListener {
+            startActivity(Intent(this@MainActivity,ComposeMigrationActivity::class.java))
+
+
         }
     }
 }

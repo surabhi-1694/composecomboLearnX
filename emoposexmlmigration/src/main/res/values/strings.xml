@@ -5,4 +5,5 @@
     <string name="btncompose1">Compose Button 1</string>
     <string name="btncompose2">Compose Button 2</string>
     <string name="textcompose">Compose Text</string>
+    <string name="title_activity_compose_migration">ComposeMigrationActivity</string>
 </resources>

@@ -9,7 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android2o">
         <activity
-            android:name=".CompactMigrationActivity"
+            android:name=".ComposeMigrationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_compose_migration"
+            android:theme="@style/Theme.Android2o" />
+        <activity
+            android:name=".CompactMigrationComposeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

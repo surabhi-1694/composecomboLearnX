@@ -4,4 +4,11 @@
     <color name="black">#0C0A0A</color>
     <color name="green">#20B420</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="teal_200">#23BCD0</color>
+    <color name="teal_201">#2196F3</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="blue_color">#2196F3</color>
+    <color name="red_color">#ff5733</color>
+    <color name="greyblack_color">#88342626</color>
 </resources>
