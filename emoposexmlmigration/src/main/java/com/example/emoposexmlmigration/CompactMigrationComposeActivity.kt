@@ -7,11 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.emoposexmlmigration.composefuns.BoxLayoutDemo
 import com.example.emoposexmlmigration.composefuns.composeButtonUI
 import com.example.emoposexmlmigration.composefuns.composeMigrateView
 import com.example.emoposexmlmigration.databinding.ActivityCompactMigrationBinding
@@ -32,19 +38,30 @@ class CompactMigrationComposeActivity : AppCompatActivity() {
             }
 
             composeBtnView.setContent {
+                var screenName by remember {
+                    mutableStateOf("CompactCompose")
+                }
                 MaterialTheme{
-                    Column(modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally) {
-                        //first Button
-                        composeButtonUI(btntext = stringResource(R.string.btncompose1), onClickCallBack = {
-                            Toast.makeText(this@CompactMigrationComposeActivity,"Btn 1 Clicked ",Toast.LENGTH_LONG).show()
-                        })
-
-                        //second Button
-                        composeButtonUI(btntext = stringResource(R.string.btncompose2), onClickCallBack = {
-                            Toast.makeText(this@CompactMigrationComposeActivity,"Btn 2 Clicked ",Toast.LENGTH_LONG).show()
-                        })
+                    when(screenName){
+                        "CompactCompose" ->{
+                            Column(modifier = Modifier.fillMaxWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally) {
+                                //first Button
+                                composeButtonUI(btntext = stringResource(R.string.btncompose1), onClickCallBack = {
+                                    screenName = "BoxLayout"
+                                    Toast.makeText(this@CompactMigrationComposeActivity,"Btn 1 Clicked ",Toast.LENGTH_LONG).show()
+                                })
+                                //second Button
+                                composeButtonUI(btntext = stringResource(R.string.btncompose2), onClickCallBack = {
+                                    Toast.makeText(this@CompactMigrationComposeActivity,"Btn 2 Clicked ",Toast.LENGTH_LONG).show()
+                                })
+                            }
+                        }
+                        "BoxLayout"->{
+                            BoxLayoutDemo()
+                        }
                     }
+
 
                 }
             }

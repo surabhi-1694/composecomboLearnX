@@ -21,9 +21,7 @@ fun composeMigrateView(text: String){
 
 @Composable
 fun composeButtonUI(btntext:String,onClickCallBack:()->Unit){
-    Button(onClick = {
-        onClickCallBack()
-    }, modifier = Modifier) {
+    Button(onClick =  onClickCallBack, modifier = Modifier) {
         Text(text = btntext,
             color = Color.White,
             textAlign = TextAlign.Center)
