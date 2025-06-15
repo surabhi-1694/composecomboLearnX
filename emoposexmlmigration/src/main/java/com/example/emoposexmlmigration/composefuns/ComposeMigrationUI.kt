@@ -67,7 +67,7 @@ fun ComposeMigrationUI() {
         Button(onClick = {
             isWebViewShow = true
 
-        }, modifier = Modifier.fillMaxWidth()){
+        }, modifier = Modifier.fillMaxWidth().padding(10.dp)){
             Text("WEBVIEW COMPOSE BUTTON ")
         }
         /*
@@ -77,7 +77,7 @@ fun ComposeMigrationUI() {
         * Or if we have large view to settle than we can go for customview which we create using attribut, canvas etc..
         *  */
         // widget.TextView
-        AndroidView( factory = { ctx ->
+        AndroidView(modifier = Modifier.fillMaxWidth().padding(10.dp), factory = { ctx ->
             TextView(ctx).apply {
                 layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
                 text = "You have clicked the buttons: $clickCount" + " times"
@@ -97,7 +97,7 @@ fun ComposeMigrationUI() {
                 * so that image view can settle if we use fill size than we will not be able to witness changes in update method
                 *
                 * */
-                modifier = Modifier.wrapContentSize(),
+                modifier = Modifier.wrapContentSize().padding(10.dp),
                 factory = { context ->
 //                MyView(context)
                     ImageView(context).apply {
