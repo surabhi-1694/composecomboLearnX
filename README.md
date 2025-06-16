@@ -9,5 +9,13 @@ Modules
 2. bottomnavigationbar : contains bottom navigation with compose , with API call , search from list (user type search, cateory wise search) , navigation from list to deatail screen
 3. newscompose:  contains list in compose with news API (third party )call using retrofut with nice basic UI
 4. composetheme: contains basic idea of compose theme, how to modify, how to use material theme..
+5. ecom app: an Ecom app with Jetpack compose and firestore Database
+6. emposexmlmigrration: contains little demo how to work in compose with xml and how to work in xml with compose (Ex. webview with compose )
+    - Androidview in compose file
+    - Composeview in xml file 
+
+
+
+
 
 
