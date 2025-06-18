@@ -7,115 +7,185 @@
     android:layout_height="match_parent"
     tools:context=".pages.ProductDetailActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/dimen_10dp"
-        />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/dimen_10dp"
-        />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_Title"
-        style="@style/txt_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/guideStart"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/guideEnd"
-        tools:text="@string/app_name" />
-    <!--    Image with pager view -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="@dimen/dimen_0dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="@dimen/dimen_10dp"
-        app:layout_constraintStart_toStartOf="@id/guideStart"
-        android:background="@drawable/linear_bg"
-        app:layout_constraintEnd_toEndOf="@+id/guideEnd"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Title" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
-    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-        android:id="@+id/dots_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_5dp"
-        app:layout_constraintStart_toStartOf="@id/guideStart"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".pages.ProductDetailActivity">
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager"
-        app:dotsColor="@color/teal_200"
-        app:dotsCornerRadius="8dp"
-        app:dotsSize="16dp"
-        app:dotsSpacing="4dp"
-        app:dotsWidthFactor="2.5"
-        app:selectedDotColor="@color/purple_200"
-        app:progressMode="true"
-        />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_Description"
-        style="@style/txt_desc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/guideStart"
-        app:layout_constraintEnd_toEndOf="@+id/guideEnd"
-        app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
-        tools:text="@string/app_name" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_Price"
-        style="@style/txt_desc"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10dp"
-        app:layout_constraintStart_toStartOf="@id/guideStart"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Description"
-        tools:text="@string/app_name" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dimen_10dp"
+                />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_ActualPrice"
-        style="@style/txt_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_10dp"
-        app:layout_constraintStart_toEndOf="@id/txt_Price"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Description"
-        tools:text="@string/app_name" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/dimen_10dp"
+                />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_cart"
-        android:layout_width="@dimen/dimen_50dp"
-        android:layout_height="@dimen/dimen_50dp"
-        android:padding="@dimen/dimen_10dp"
-        android:src="@drawable/baseline_shopping_cart_24"
-        app:layout_constraintEnd_toStartOf="@+id/img_favourite"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Description" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_Title"
+                style="@style/txt_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+                tools:text="@string/app_name" />
+            <!--    Image with pager view -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:background="@drawable/linear_bg"
+                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintTop_toBottomOf="@+id/txt_Title" />
+
+            <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewPager"
+                app:dotsColor="@color/teal_200"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="16dp"
+                app:dotsSpacing="4dp"
+                app:dotsWidthFactor="2.5"
+                app:selectedDotColor="@color/purple_200"
+                app:progressMode="true"
+                />
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_favourite"
-        android:layout_width="@dimen/dimen_50dp"
-        android:layout_height="@dimen/dimen_50dp"
-        android:padding="@dimen/dimen_10dp"
-        android:src="@drawable/favourite_selector"
-        app:layout_constraintEnd_toEndOf="@+id/guideEnd"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Description" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_Price"
+                style="@style/txt_desc"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
+                tools:text="@string/app_name" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_ActualPrice"
+                style="@style/txt_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10dp"
+                app:layout_constraintStart_toEndOf="@+id/txt_Price"
+                app:layout_constraintEnd_toStartOf="@+id/img_favourite"
+                app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
+                tools:text="@string/app_name" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_favourite"
+                android:layout_width="@dimen/dimen_50dp"
+                android:layout_height="@dimen/dimen_50dp"
+                android:padding="@dimen/dimen_10dp"
+                android:src="@drawable/favourite_selector"
+                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+                app:layout_constraintTop_toTopOf="@id/txt_Price"
+                app:layout_constraintBottom_toBottomOf="@id/txt_Price"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_addToCart"
+                android:layout_width="0dp"
+                app:cornerRadius="@dimen/dimen_10dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_addtocart"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+                app:layout_constraintTop_toBottomOf="@id/img_favourite"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_labelDescription"
+                style="@style/txt_label"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintTop_toBottomOf="@+id/btn_addToCart"
+                android:text="@string/txt_description">
+            </androidx.appcompat.widget.AppCompatTextView>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_Description"
+                style="@style/txt_desc"
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:lineSpacingExtra="@dimen/dimen_3dp"
+                android:scrollbars="vertical"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                app:layout_constraintStart_toEndOf="@id/txt_labelDescription"
+                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+                app:layout_constraintTop_toTopOf="@+id/txt_labelDescription"
+                tools:text="ing/app_name@string/app_name@string/app_name@string
+                /app_name@string/app_name@string/app_name@string/app_name@string
+                /app_name@string/app_name@string/app_name@string/app_nameapp_name@string/app_name
+app_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_name" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_otherDetails"
+                style="@style/txt_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10dp"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+                app:layout_constraintTop_toBottomOf="@+id/txt_Description"
+                android:text="@string/txt_details" >
+
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/comp_otherdetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/txt_otherDetails"
+                app:layout_constraintStart_toStartOf="@id/guideStart"
+                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

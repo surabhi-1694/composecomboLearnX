@@ -12,5 +12,8 @@
     <string name="Password">Password *</string>
     <string name="Email_valid">Incorrect Email Format</string>
     <string name="validation_msg">Please add all Require Fields</string>
+    <string name="txt_details">Other Product Details:</string>
+    <string name="txt_description">Product Description:</string>
+    <string name="btn_addtocart">Add to Cart</string>
 
 </resources>

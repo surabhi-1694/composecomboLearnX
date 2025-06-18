@@ -2,7 +2,6 @@ package com.example.ecomapp.Home
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -23,7 +22,7 @@ import com.example.ecomapp.signup.AuthViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun CategoryPageView(categoryId:String,authViewModel: AuthViewModel = viewModel()){
+fun CategoryWiseProductListPageView(categoryId:String, authViewModel: AuthViewModel = viewModel()){
 
     val productList = remember {
         mutableStateOf<List<CategoryWiseData>>(emptyList())

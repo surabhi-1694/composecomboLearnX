@@ -8,11 +8,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.ecomapp.Home.CategoryPageView
+import com.example.ecomapp.Home.CategoryWiseProductListPageView
 import com.example.ecomapp.Home.HomeScreen
 import com.example.ecomapp.signup.SignUpScreen
 import com.google.firebase.Firebase
-import com.google.firebase.app
 import com.google.firebase.auth.auth
 
 @Composable
@@ -42,7 +41,7 @@ fun AppNavigation(modifier: Modifier) {
 
         composable<CategoryPageRoute> { catpage->
             val catPageFlow = catpage.toRoute<CategoryPageRoute>()
-            CategoryPageView(categoryId =  catPageFlow.categoryId)
+            CategoryWiseProductListPageView(categoryId =  catPageFlow.categoryId)
         }
     }
 
