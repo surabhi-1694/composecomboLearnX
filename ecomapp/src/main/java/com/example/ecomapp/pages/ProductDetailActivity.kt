@@ -18,6 +18,9 @@ class ProductDetailActivity : AppCompatActivity() {
         val videoItemData = intent.getParcelableExtra<CategoryWiseData>("productITem")
 
         binding = ActivityProductDetailBinding.inflate(layoutInflater).apply {
+            Log.e("videoItemData_id",videoItemData?.id.toString())
+            videoItemData?.OtherDetails?.toString()?.let { Log.e("videoItemData ", it) }
+
             compOtherdetails.setContent {
                 MaterialTheme {
                     OtherProductDetails(videoItemData)

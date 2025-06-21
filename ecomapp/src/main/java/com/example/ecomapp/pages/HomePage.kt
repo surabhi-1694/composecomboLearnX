@@ -23,6 +23,18 @@ fun HomePage(modifier: Modifier,
           //Category view
           Categoriesview(modifier = Modifier,authViewModel)
 
+          /*
+          *
+          *
+          * Brand	HP
+Model Name	HP Laptop
+Screen Size	15.6 Inches
+Colour	Silver
+Hard Disk Size	512 GB
+CPU Model	Intel Core i7
+RAM Memory Installed Size	16 GB
+
+          * */
 
     }
 }
