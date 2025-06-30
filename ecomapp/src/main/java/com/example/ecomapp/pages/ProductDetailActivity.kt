@@ -19,7 +19,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         binding = ActivityProductDetailBinding.inflate(layoutInflater).apply {
             Log.e("videoItemData_id",videoItemData?.id.toString())
-            videoItemData?.OtherDetails?.toString()?.let { Log.e("videoItemData ", it) }
+            videoItemData?.otherDetails?.toString()?.let { Log.e("videoItemData ", it) }
 
             compOtherdetails.setContent {
                 MaterialTheme {

@@ -13,5 +13,5 @@ data class CategoryWiseData(
     //work as ref. key for category
     val categoryId:String="",
     val imageUrls:List<String> = emptyList(),
-    val OtherDetails:Map<String,String> = emptyMap()
+    val otherDetails:Map<String,String> = emptyMap()
 ):Parcelable

@@ -13,12 +13,12 @@ plugins {
 
 android {
     namespace = "com.example.ecomapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.ecomapp"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -88,6 +88,10 @@ dependencies {
     //hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    //material- adaptive - for window size for mobile potrait,landscape, tablet
+//    implementation(libs.material.adaptive)
+    implementation(libs.androidx.adaptive)
 
 
     testImplementation(libs.junit)

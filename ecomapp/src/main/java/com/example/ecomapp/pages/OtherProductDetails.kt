@@ -24,7 +24,7 @@ import com.example.ecomapp.utils.CommonVericalSpacer
 fun OtherProductDetails(videoItemData: CategoryWiseData?) {
     Column(modifier = Modifier.fillMaxWidth().padding(10.dp)) {
         //add list in firestore db using map and set in row with for each
-        videoItemData?.OtherDetails?.forEach{ (key,value)->
+        videoItemData?.otherDetails?.forEach{ (key,value)->
 
             Row(modifier = Modifier.fillMaxWidth().padding(4.dp)) {
                 Text(text = "$key :", modifier = Modifier.padding(4.dp),
