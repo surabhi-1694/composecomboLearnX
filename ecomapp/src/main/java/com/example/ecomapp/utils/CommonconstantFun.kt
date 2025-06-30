@@ -12,6 +12,7 @@ enum class DifferentScreenConfig{
     DESKTOP
 }
 
+
 object windowSizeClass{
     fun fromWindowSizeClass(windowSizeClass: WindowSizeClass):DifferentScreenConfig{
         val widthClass = windowSizeClass.windowWidthSizeClass
