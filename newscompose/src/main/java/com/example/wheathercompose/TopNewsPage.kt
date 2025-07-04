@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
@@ -52,8 +53,18 @@ fun TopNewsPage(newsModel: NewsModel) {
 //    val newslist = ArrayList<Article>()
 //    val newslist = remember { mutableStateListOf<Article>() }
 
+    /*
+    * Live data
+    * */
     val topNewsResultLiveData = newsModel.topNewsResultLiveData.observeAsState()
     val topNewsArticlesLiveData by newsModel.topNewsArticlesLiveData.observeAsState()
+
+    /*
+    * Stateflow
+    *
+    * */
+    val topNewsResultStateFlowData by newsModel.topNewsResultStateFlow.collectAsStateWithLifecycle()
+    val topNewsArticleStateFlowData by newsModel.topNewsArticlesStateFlow.collectAsStateWithLifecycle()
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -61,17 +72,21 @@ fun TopNewsPage(newsModel: NewsModel) {
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             Button(onClick = {
                 newsModel.getData()
+                newsModel.getNewsFromFlow()
             }, modifier = Modifier.fillMaxWidth(0.6f))
             { Text(text = "Get Top News") }
         }
         /**
          * below code is observing api data and paa to UI
          * */
-        when (val result = topNewsResultLiveData.value) {
+//        when (val result = topNewsResultLiveData.value) {
+        when (val result = topNewsResultStateFlowData) {
             is NetworkResponse.Success -> {
 //                newslist.addAll(result.data.articles)
-                ArticleList(topNewsArticlesLiveData)
-                Log.e("newslist ", topNewsArticlesLiveData?.size.toString())
+//                ArticleList(topNewsArticlesLiveData)
+                ArticleList(topNewsArticleStateFlowData)
+                Log.e("newslist_Livedata", topNewsArticlesLiveData?.size.toString())
+                Log.e("newslist_StateFlow", topNewsArticleStateFlowData?.size.toString())
 
             }
 

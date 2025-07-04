@@ -63,6 +63,8 @@ dependencies {
     implementation(libs.coilImageCompose)
     implementation(libs.coilImageNetwork)
     implementation(libs.androidx.livedata.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
