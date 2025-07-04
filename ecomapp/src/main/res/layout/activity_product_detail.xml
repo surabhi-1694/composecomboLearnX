@@ -21,6 +21,7 @@
             android:id="@+id/main_scroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
             tools:context=".pages.ProductDetailActivity">
 
             <androidx.constraintlayout.widget.Guideline
@@ -141,33 +142,38 @@
                 android:text="@string/txt_description">
             </androidx.appcompat.widget.AppCompatTextView>
 
-
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/nest_text"
+    android:layout_width="@dimen/dimen_0dp"
+    android:layout_height="220dp"
+    android:background="@drawable/linear_bg"
+    app:layout_constraintStart_toStartOf="@id/guideStart"
+    app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+    app:layout_constraintTop_toBottomOf="@+id/txt_labelDescription">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_Description"
                 style="@style/txt_desc"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="220dp"
                 android:lineSpacingExtra="@dimen/dimen_3dp"
                 android:scrollbars="vertical"
                 android:layout_marginStart="@dimen/dimen_10dp"
-                app:layout_constraintStart_toEndOf="@id/txt_labelDescription"
-                app:layout_constraintEnd_toEndOf="@+id/guideEnd"
-                app:layout_constraintTop_toTopOf="@+id/txt_labelDescription"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="ing/app_name@string/app_name@string/app_name@string
                 /app_name@string/app_name@string/app_name@string/app_name@string
                 /app_name@string/app_name@string/app_name@string/app_nameapp_name@string/app_name
 app_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_nameapp_name@string/app_name" />
 
-
+</androidx.core.widget.NestedScrollView>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_otherDetails"
                 style="@style/txt_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_10dp"
                 app:layout_constraintStart_toStartOf="@id/guideStart"
                 app:layout_constraintEnd_toEndOf="@+id/guideEnd"
-                app:layout_constraintTop_toBottomOf="@+id/txt_Description"
+                app:layout_constraintTop_toBottomOf="@+id/nest_text"
                 android:text="@string/txt_details" >
 
             </androidx.appcompat.widget.AppCompatTextView>

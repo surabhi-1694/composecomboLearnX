@@ -2,9 +2,14 @@ package com.example.ecomapp.pages
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.MaterialTheme
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.ecomapp.Home.CategoryWiseData
+import com.example.ecomapp.R
 import com.example.ecomapp.databinding.ActivityProductDetailBinding
 import com.example.ecomapp.pages.pageradapter.ImagepagerAdapter
 
@@ -13,7 +18,9 @@ class ProductDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        binding = ActivityProductDetailBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
+// Enable edge-to-edge rendering
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val videoItemData = intent.getParcelableExtra<CategoryWiseData>("productITem")
 
@@ -28,6 +35,11 @@ class ProductDetailActivity : AppCompatActivity() {
             }
         }
         setContentView(binding.main)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
         setProductDetails(videoItemData)
 
         binding.imgFavourite.setOnClickListener{

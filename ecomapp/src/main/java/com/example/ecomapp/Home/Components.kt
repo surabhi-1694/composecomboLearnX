@@ -2,6 +2,7 @@ package com.example.ecomapp.Home
 
 import android.content.Intent
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -149,7 +150,7 @@ fun BannerView(modifier: Modifier = Modifier,authViewModel: AuthViewModel){
 fun productListView(modifier: Modifier = Modifier,item:CategoryWiseData){
     val context = LocalContext.current
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = Modifier.fillMaxWidth().padding(vertical = 0.dp)) {
         Card(modifier=Modifier.fillMaxWidth().clickable {
             //check
             val intent = Intent(context,ProductDetailActivity::class.java)
@@ -158,7 +159,7 @@ fun productListView(modifier: Modifier = Modifier,item:CategoryWiseData){
         },
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(5.dp)) {
-            Column(modifier = modifier.fillMaxWidth().padding(10.dp)) {
+            Column(modifier = modifier.fillMaxWidth().padding(8.dp)) {
                 Text(text = item.title,modifier = Modifier.fillMaxWidth(),
                     style = TextStyle(fontSize = 16.sp,
                         fontWeight = FontWeight.ExtraBold),

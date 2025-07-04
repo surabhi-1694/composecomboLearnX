@@ -1,6 +1,7 @@
 package com.example.ecomapp.pages
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -15,7 +16,7 @@ import com.example.ecomapp.signup.AuthViewModel
 @Composable
 fun HomePage(modifier: Modifier,
              authViewModel: AuthViewModel = viewModel()){
-      Column (modifier = modifier.padding(10.dp)
+      Column (modifier = modifier.padding(10.dp).fillMaxSize()
         ) {
           HeaderView(modifier,authViewModel)
           //set banner  list here
