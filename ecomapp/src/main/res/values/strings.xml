@@ -15,5 +15,6 @@
     <string name="txt_details">Other Product Details:</string>
     <string name="txt_description">Product Description:</string>
     <string name="btn_addtocart">Add to Cart</string>
+    <string name="cartItemAdded">Item has added in Cart</string>
 
 </resources>

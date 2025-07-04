@@ -52,6 +52,7 @@ import com.example.ecomapp.signup.AuthViewModel
 import com.example.ecomapp.utils.CommonHorizontalSpacer
 import com.example.ecomapp.utils.CommonVericalSpacer
 import com.example.ecomapp.utils.ShowToast
+import com.example.ecomapp.utils.addToCart
 import com.tbuonomo.viewpagerdotsindicator.compose.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.compose.model.DotGraphic
 import com.tbuonomo.viewpagerdotsindicator.compose.type.ShiftIndicatorType
@@ -192,6 +193,7 @@ fun productListView(modifier: Modifier = Modifier,item:CategoryWiseData){
                     IconButton(onClick = {
                         //move to another activity
                         ShowToast(context,"Add to Cart")
+                        addToCart(context,item.id)
                     }, modifier = Modifier.padding(0.dp)) {
                         Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "add to cart")
                     }

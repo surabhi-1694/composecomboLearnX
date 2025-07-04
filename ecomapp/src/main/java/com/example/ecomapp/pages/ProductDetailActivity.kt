@@ -12,6 +12,7 @@ import com.example.ecomapp.Home.CategoryWiseData
 import com.example.ecomapp.R
 import com.example.ecomapp.databinding.ActivityProductDetailBinding
 import com.example.ecomapp.pages.pageradapter.ImagepagerAdapter
+import com.example.ecomapp.utils.addToCart
 
 class ProductDetailActivity : AppCompatActivity() {
    private  lateinit var binding: ActivityProductDetailBinding
@@ -51,17 +52,20 @@ class ProductDetailActivity : AppCompatActivity() {
         }
         }
 
-    private fun setProductDetails(videoItemData: CategoryWiseData?) {
+    private fun setProductDetails(categoryWiseData: CategoryWiseData?) {
         binding.apply {
-            txtTitle.text = videoItemData?.title
-            txtDescription.text = videoItemData?.description.plus(videoItemData?.description).plus(videoItemData?.description)
-                .plus(videoItemData?.description).plus(videoItemData?.description).plus(videoItemData?.description)
-            txtPrice.text = "\u20B9${videoItemData?.price}"
+            txtTitle.text = categoryWiseData?.title
+            txtDescription.text = categoryWiseData?.description.plus(categoryWiseData?.description).plus(categoryWiseData?.description)
+                .plus(categoryWiseData?.description).plus(categoryWiseData?.description).plus(categoryWiseData?.description)
+            txtPrice.text = "\u20B9${categoryWiseData?.price}"
             txtActualPrice.apply {
                 paint.isStrikeThruText = true
-                text = "\u20B9${videoItemData?.actualPrice}"
+                text = "\u20B9${categoryWiseData?.actualPrice}"
             }
-            viewPager.adapter = ImagepagerAdapter(videoItemData?.imageUrls as ArrayList)
+            viewPager.adapter = ImagepagerAdapter(categoryWiseData?.imageUrls as ArrayList)
+            btnAddToCart.setOnClickListener{
+                addToCart(this@ProductDetailActivity,categoryWiseData.id)
+            }
 
             // Set up your ViewPager ...
             dotsIndicator.attachTo(viewPager)
