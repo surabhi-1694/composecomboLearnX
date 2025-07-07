@@ -14,10 +14,10 @@
         android:theme="@style/Theme.Android2o"
         tools:targetApi="31">
         <activity
-            android:name=".todoApp.TodoAppActivity"
+            android:name=".gallerypick.GalleryActivity"
             android:exported="true"
-            android:label="@string/title_activity_todo_app"
-            android:theme="@style/Theme.Android2o" >
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,15 +25,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".lazyrowcoloumn.LazyRowColumn"
+            android:name=".todoApp.TodoAppActivity"
             android:exported="true"
-            android:label="@string/title_activity_lazyrowcolumn"
+            android:label="@string/title_activity_todo_app"
             android:theme="@style/Theme.Android2o">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".lazyrowcoloumn.LazyRowColumn"
+            android:exported="true"
+            android:label="@string/title_activity_lazyrowcolumn"
+            android:theme="@style/Theme.Android2o">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".stateManage.StateMangeComposeActivity"
@@ -67,20 +80,20 @@
             android:label="@string/title_activity_main_compose"
             android:theme="@style/Theme.Android2o">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".MainRecyclerviewActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <!--
 activity that open for other app
@@ -90,13 +103,16 @@ EX: if edit photo our app will display at bottom to ask for edit with this app
             android:name=".MainActivityBottomLayout"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
-           <!-- <intent-filter>
+
+            <!--
+            <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
                  <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.SEND" />
 
                 <data android:mimeType="image/*" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
 
             <meta-data
                 android:name="android.app.shortcuts"

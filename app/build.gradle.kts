@@ -82,6 +82,10 @@ dependencies {
     implementation(libs.androidx.navigation)
     implementation(libs.transportation.consumer)
 
+
+    //coil
+    implementation(libs.coilImageCompose)
+    
     //room
     /**-Room
      * make sure to match version of kotlin compiler , kotlin ksp , kotlin compose compiler

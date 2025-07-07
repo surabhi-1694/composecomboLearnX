@@ -4,4 +4,18 @@
     <style name="shapableimage" parent="">
         <item name="cornerSize">10%</item>
         </style>
+
+    <style name="Theme.MyApp" parent="Theme.Material3.DayNight">
+    </style>
+
+
+    <style name="outlinedButtonButtonStyle.button" parent="@style/Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">@dimen/dimen_10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@color/purple_a8</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textSize">@dimen/dimen_15sp</item>
+
+    </style>
 </resources>
