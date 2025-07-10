@@ -25,7 +25,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.ecomapp.DataStoreModel
-import com.example.ecomapp.pages.Cart
+import com.example.ecomapp.pages.CartScreen
 import com.example.ecomapp.pages.FavouritePage
 import com.example.ecomapp.pages.HomePage
 import com.example.ecomapp.pages.Profile
@@ -86,7 +86,7 @@ fun ContentScreen(modifier: Modifier, isSelectedIndex: Int){
             HomePage(modifier)
         }
         1->{
-            Cart(modifier)
+            CartScreen(modifier)
         }
         2->{
             FavouritePage((modifier))
