@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,25 +36,46 @@ fun CartScreen(modifier: Modifier){
         mutableStateOf(User())
     }
     Column (modifier = Modifier.fillMaxSize().padding(top = 30.dp, start = 8.dp, end = 8.dp)){
-        LaunchedEffect(key1 = Unit) {
-            Firebase.firestore.collection("Users")
-                .document(FirebaseAuth.getInstance().currentUser?.uid!!).get().addOnCompleteListener {
-                    if(it.isSuccessful){
-                        val userResult = it.result.toObject(User::class.java)
+        DisposableEffect (key1 = Unit) {
+           val listener =  Firebase.firestore.collection("Users")
+                .document(FirebaseAuth.getInstance().currentUser?.uid!!)
+                // use to verify task complete or not
+                // usage: if it is one time perform task if task's value/subvalue keep update on some buton trigger use snapshotlistenr it will get latest snapshot that is update data
+//                .get().addOnCompleteListener {
+                .addSnapshotListener { it, error ->
+                    if(it!=null){
+                        val userResult = it.toObject(User::class.java)
                         if(userResult!=null){
                             userModel.value = userResult
                         }
                     }
                 }
+            onDispose {
+                listener.remove()
+            }
         }
-        Text(text = "Your Cart", textAlign = TextAlign.Start, style = TextStyle(fontSize = 20.sp,
+        Text(text = "Your Cart",
+            modifier = Modifier.padding(10.dp),
+            textAlign = TextAlign.Start,
+            style = TextStyle(fontSize = 20.sp,
             fontWeight = FontWeight.Bold ))
 
+//        Items have a natural unique ID (like id, productId, etc.)
+//        Think of key in Compose like getItemId() in RecyclerView.Adapter with setHasStableIds(true).
+//        Both help the framework track items intelligently during data changes.
+
+//        Assuming cartItems is a Map<ProductId, Quantity>,
+//        then when you call .toList(), it becomes:
+//        List<Pair<ProductId, Quantity>>
+//        So now each item (it) is a Pair, like:
+//        ("ABC123", 2)
+//        In a Pair<A, B>:
+//        it.first → "ABC123" (the productId)
+//        it.second → 2 (the quantity)
         LazyColumn{
-            items(userModel.value.cartItems.toList()){(productId, qty)->
+            items(userModel.value.cartItems.toList(),key = {it.first}){(productId, qty)->
                 CartListScreen(modifier= Modifier,productId = productId,qty =qty)
             }
-
         }
     }
 
