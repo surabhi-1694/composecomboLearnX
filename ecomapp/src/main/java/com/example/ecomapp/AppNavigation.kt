@@ -11,7 +11,6 @@ import androidx.navigation.toRoute
 import com.example.ecomapp.Home.CategoryWiseProductListPageView
 import com.example.ecomapp.Home.HomeScreen
 import com.example.ecomapp.signup.SignUpScreen
-import com.example.ecomapp.utils.BaseAppBackground
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 

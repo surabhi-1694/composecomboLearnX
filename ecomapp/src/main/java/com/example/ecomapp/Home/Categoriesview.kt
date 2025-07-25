@@ -43,7 +43,7 @@ fun Categoriesview(
     authViewModel: AuthViewModel
 ) {
 
-    var categoriesList = remember {
+    val categoriesList = remember {
         mutableStateOf<List<CategoryData>>(emptyList())
     }
     val lifecycleScope = LocalLifecycleOwner.current.lifecycleScope

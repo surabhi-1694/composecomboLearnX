@@ -1,6 +1,5 @@
 package com.example.ecomapp.pages
 
-import android.provider.ContactsContract.Profile
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
@@ -8,12 +7,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.ecomapp.AuthRoute
-import com.example.ecomapp.AuthScreen
 import com.example.ecomapp.GlobalNavigator
 import com.example.ecomapp.HomeRoute
-import com.example.ecomapp.ProfileRoute
 import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
 
