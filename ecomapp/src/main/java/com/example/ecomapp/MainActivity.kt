@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     contentWindowInsets = WindowInsets.statusBars // space around screen
                 ) { innerPadding ->
                     AppNavigation(Modifier.padding(innerPadding)
-                        .background(MaterialTheme.colorScheme.primary))
+                        .background(colorResource(R.color.grdient_green3)))
                 }
             }
         }

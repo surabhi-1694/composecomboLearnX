@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun FavouritePage(modifier: Modifier) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()) {
         Text(text = "FavouritePage PAge")
 
     }

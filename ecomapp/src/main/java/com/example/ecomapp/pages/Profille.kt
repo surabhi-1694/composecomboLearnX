@@ -19,7 +19,7 @@ import com.google.firebase.auth.auth
 
 @Composable
 fun Profile(modifier: Modifier) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()) {
         Text(text= "Profile page")
         Button(onClick = {
             Firebase.auth.signOut()

@@ -29,8 +29,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -63,9 +65,11 @@ fun LoginScreen(modifier: Modifier,
 
     val rootmodifier = modifier
         .fillMaxSize()
-        .padding( vertical = 24.dp)
+        .padding(top = 100.dp)
         .clip(RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp))
-        .background(Color.White)
+        .background(brush = Brush.verticalGradient(listOf(colorResource(R.color.teal_201),
+            colorResource(R.color.grdient_green4)
+        )))
         .consumeWindowInsets(WindowInsets.navigationBars)
 
     val windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass

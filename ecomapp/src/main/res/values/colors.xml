@@ -11,4 +11,15 @@
     <color name="blue_color">#2196F3</color>
     <color name="red_color">#ff5733</color>
     <color name="greyblack_color">#88342626</color>
+
+
+    <color name="grdient_green1">#328E6E</color>
+    <color name="grdient_green2">#67AE6E</color>
+    <color name="grdient_green3">#90C67C</color>
+    <color name="grdient_green4">#E1EEBC</color>
+
+    <color name="gradient_purple1">#0AFBB7</color>
+    <color name="gradient_purple2">#1DB484</color>
+    <color name="gradient_purple3">#79DBCB</color>
+    <color name="gradient_purple4">#22B2D8</color>
 </resources>

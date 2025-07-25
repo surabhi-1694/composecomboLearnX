@@ -48,6 +48,7 @@ import coil3.compose.AsyncImage
 import com.example.ecomapp.Home.CategoryWiseData
 import com.example.ecomapp.R
 import com.example.ecomapp.signup.User
+import com.example.ecomapp.ui.theme.Android2oTheme
 import com.example.ecomapp.utils.CommonHorizontalSpacer
 import com.example.ecomapp.utils.CommonVericalSpacer
 import com.example.ecomapp.utils.addToCart
@@ -86,26 +87,26 @@ fun CartListScreen(modifier: Modifier,productId:String,qty:Long){
     }
 
     Card(modifier = Modifier.fillMaxWidth().padding(8.dp)
-        .background(
-        brush = Brush.linearGradient(
-            colors = listOf(Color.Green, colorResource(R.color.blue_color))
-        ),
-            shape = RoundedCornerShape(12.dp)
-    ), colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+     , colors = CardDefaults.cardColors(containerColor = Color.White),
+        shape = RoundedCornerShape(15.dp),
+        elevation = CardDefaults.cardElevation(10.dp)
 ) {
         Row(modifier = modifier.fillMaxWidth().padding(10.dp),
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
             verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(model = product.value.imageUrls.firstOrNull(),
                 contentDescription = "product Image",
                 modifier = Modifier.size(60.dp).clip(RoundedCornerShape(3.dp))
             )
-            CommonHorizontalSpacer(5.dp)
-            Column(modifier = Modifier.fillMaxWidth().weight(1f).padding(8.dp), verticalArrangement = Arrangement.Center){
+            CommonHorizontalSpacer(15.dp)
+            Column(modifier = Modifier.fillMaxWidth().weight(1f).padding(8.dp),
+                verticalArrangement = Arrangement.Center){
                 Text(text = product.value.title,
-                    color = Color.White,
-                    style = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold))
+                    color = Color.Blue,
+                    style = TextStyle(fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal))
                 CommonVericalSpacer(5.dp)
-                Text(text = product.value.price, color = Color.White,
+                Text(text = product.value.price, color = Color.Blue,
                     style = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Medium))
 
                 CommonHorizontalSpacer(5.dp)
@@ -125,7 +126,7 @@ fun CartListScreen(modifier: Modifier,productId:String,qty:Long){
                     ) {
                         Text(text = "-", color = Color.White)
                     }
-                    Text(text = "$qty",color = Color.White)
+                    Text(text = "$qty",color = Color.Blue)
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(4.dp,4.dp,4.dp,4.dp)) // Your shape
@@ -145,7 +146,7 @@ fun CartListScreen(modifier: Modifier,productId:String,qty:Long){
                 removeFromCart(context = context,productId = productId,isRemoveAll = true)
             }) {
                 Icon(imageVector = Icons.Default.Delete,
-                    contentDescription = "cart Delete", tint = Color.White)
+                    contentDescription = "cart Delete", tint = Color.Blue)
             }
         }
     }

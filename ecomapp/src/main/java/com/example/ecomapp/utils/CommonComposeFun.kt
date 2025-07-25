@@ -16,7 +16,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -24,6 +27,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
@@ -38,6 +42,39 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ecomapp.R
 import java.util.regex.Pattern
+
+
+
+
+/*
+* we will create base background for App so for each screen background be same
+* */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BaseAppBackground(modifier: Modifier,
+                      isShowToolBar:Boolean = false,
+                      title:String="",
+                      content:@Composable () -> Unit
+){
+    Scaffold(
+        topBar = {
+            if(isShowToolBar){
+                TopAppBar(title = {Text(text = title)})
+            }
+        },
+        modifier = modifier.padding(10.dp)
+            .background(brush = Brush.horizontalGradient(listOf(colorResource(R.color.grdient_green3),
+                colorResource(R.color.grdient_green2)
+            ))),
+        content = { paddingValues ->
+            Box(modifier = Modifier.padding(paddingValues)) {
+                content()
+            }
+        }
+    )
+}
+
+
 
 
 @Composable

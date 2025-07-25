@@ -95,20 +95,24 @@ fun commonLoginField(modifier: Modifier,
                 R.string.loginButton
             )
         ) {
-            //onclick
-            authViewModel.login(emailLogin,pwd){authResult,status,msg->
-                if(status){
-
-                    navController.navigate(HomeRoute){
-                        popUpTo<AuthRoute> {
-                            inclusive = true
+            if(emailLogin.isNotEmpty()|| pwd.isNotEmpty()){
+                //onclick
+                authViewModel.login(emailLogin,pwd){authResult,status,msg->
+                    if(status){
+                        navController.navigate(HomeRoute){
+                            popUpTo<AuthRoute> {
+                                inclusive = true
+                            }
                         }
+                    }else{
+                        ShowToast(context = context,"Something went wrong")
                     }
-                }else{
-                    ShowToast(context = context,"Something went wrong")
-                }
 
+                }
+            }else{
+                ShowToast(context = context,"Enter Login Credentials")
             }
+
 
         }
     }
@@ -131,12 +135,14 @@ fun commonLoginHeader(modifier: Modifier){
             fontFamily = FontFamily.Serif,
             modifier = Modifier.fillMaxWidth()
       )
+        CommonVericalSpacer(10.dp)
         Text(
             text = stringResource(R.string.signinhere), color = Color.Blue,
             fontSize = 18.sp,
             fontFamily = FontFamily.Serif,
             modifier = Modifier.fillMaxWidth()
         )
+        CommonVericalSpacer(10.dp)
         Image(
             painter = painterResource(R.drawable.ic_signup),
             contentDescription = "Login image ",
