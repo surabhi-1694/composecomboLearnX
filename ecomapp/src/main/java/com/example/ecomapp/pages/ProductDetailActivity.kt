@@ -6,9 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.ecomapp.Home.CategoryWiseData
+import com.example.ecomapp.Home.CategoryWiseProduct
 import com.example.ecomapp.R
 import com.example.ecomapp.databinding.ActivityProductDetailBinding
 import com.example.ecomapp.pages.pageradapter.ImagepagerAdapter
@@ -23,7 +22,7 @@ class ProductDetailActivity : AppCompatActivity() {
 // Enable edge-to-edge rendering
 //        WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        val videoItemData = intent.getParcelableExtra<CategoryWiseData>("productITem")
+        val videoItemData = intent.getParcelableExtra<CategoryWiseProduct>("productITem")
 
         binding = ActivityProductDetailBinding.inflate(layoutInflater).apply {
             Log.e("videoItemData_id",videoItemData?.id.toString())
@@ -52,7 +51,7 @@ class ProductDetailActivity : AppCompatActivity() {
         }
         }
 
-    private fun setProductDetails(categoryWiseData: CategoryWiseData?) {
+    private fun setProductDetails(categoryWiseData: CategoryWiseProduct?) {
         binding.apply {
             txtTitle.text = categoryWiseData?.title
             txtDescription.text = categoryWiseData?.description.plus(categoryWiseData?.description).plus(categoryWiseData?.description)

@@ -31,7 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.example.ecomapp.Home.CategoryWiseData
+import com.example.ecomapp.Home.CategoryWiseProduct
 import com.example.ecomapp.utils.CommonHorizontalSpacer
 import com.example.ecomapp.utils.CommonVericalSpacer
 import com.example.ecomapp.utils.addToCart
@@ -51,7 +51,7 @@ fun CartListScreen(modifier: Modifier,productId:String,qty:Long){
 
     val context = LocalContext.current
     val product = remember {
-        mutableStateOf(CategoryWiseData())
+        mutableStateOf(CategoryWiseProduct())
     }
 
     LaunchedEffect(key1 = Unit) {
@@ -60,7 +60,7 @@ fun CartListScreen(modifier: Modifier,productId:String,qty:Long){
             .collection("products")
             .document(productId).get().addOnCompleteListener {
                 if(it.isSuccessful){
-                    val result = it.result.toObject(CategoryWiseData::class.java)
+                    val result = it.result.toObject(CategoryWiseProduct::class.java)
                     if (result != null) {
                         product.value = result
                     }

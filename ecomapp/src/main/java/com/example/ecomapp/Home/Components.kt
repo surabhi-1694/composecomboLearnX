@@ -2,7 +2,6 @@ package com.example.ecomapp.Home
 
 import android.content.Intent
 import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -46,10 +43,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import coil3.compose.AsyncImage
-import com.example.ecomapp.R
 import com.example.ecomapp.pages.ProductDetailActivity
 import com.example.ecomapp.signup.AuthViewModel
-import com.example.ecomapp.utils.CommonHorizontalSpacer
 import com.example.ecomapp.utils.CommonVericalSpacer
 import com.example.ecomapp.utils.ShowToast
 import com.example.ecomapp.utils.addToCart
@@ -148,7 +143,7 @@ fun BannerView(modifier: Modifier = Modifier,authViewModel: AuthViewModel){
 }
 
 @Composable
-fun productListView(modifier: Modifier = Modifier,item:CategoryWiseData){
+fun productListView(modifier: Modifier = Modifier,item:CategoryWiseProduct){
     val context = LocalContext.current
 
     Column(modifier = Modifier.fillMaxWidth().padding(vertical = 0.dp)) {

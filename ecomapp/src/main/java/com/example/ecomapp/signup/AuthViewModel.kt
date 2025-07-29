@@ -3,7 +3,7 @@ package com.example.ecomapp.signup
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.ecomapp.Home.CategoryData
-import com.example.ecomapp.Home.CategoryWiseData
+import com.example.ecomapp.Home.CategoryWiseProduct
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Firebase
 import com.google.firebase.auth.AuthResult
@@ -144,9 +144,9 @@ class AuthViewModel:ViewModel() {
         return productList.documents
     }
 
-    fun getCategoriesListwise(categoryId:String):List<CategoryWiseData>{
+    fun getCategoriesListwise(categoryId:String):List<CategoryWiseProduct>{
         Log.e("categoryData_categoryId",categoryId)
-        var categoryList:List<CategoryWiseData> = emptyList()
+        var categoryList:List<CategoryWiseProduct> = emptyList()
         Firebase.firestore.collection("data")
             .document("stock")
             .collection("products")
@@ -155,7 +155,7 @@ class AuthViewModel:ViewModel() {
                 if(it.isSuccessful){
                     Log.e("categoryData","isSuccessful")
                     categoryList = it.result.documents.mapNotNull { doc->
-                        doc.toObject(CategoryWiseData::class.java)
+                        doc.toObject(CategoryWiseProduct::class.java)
                     }
                     Log.e("categoryData",it.result.documents.size.toString())
 

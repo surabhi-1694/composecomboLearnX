@@ -19,6 +19,9 @@ object HomeRoute
 object ProfileRoute
 
 @Serializable
+object CheckoutRoute
+
+@Serializable
 data class CategoryPageRoute(val categoryId:String)
 
 

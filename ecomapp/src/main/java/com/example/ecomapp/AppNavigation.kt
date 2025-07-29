@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.ecomapp.Home.CategoryWiseProductListPageView
 import com.example.ecomapp.Home.HomeScreen
+import com.example.ecomapp.pages.CheckOutScreen
 import com.example.ecomapp.signup.SignUpScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -37,6 +38,9 @@ fun AppNavigation(modifier: Modifier) {
         }
         composable<HomeRoute> {
             HomeScreen(modifier,navController)
+        }
+        composable<CheckoutRoute> {
+            CheckOutScreen(modifier,navController)
         }
 
         composable<CategoryPageRoute> { catpage->

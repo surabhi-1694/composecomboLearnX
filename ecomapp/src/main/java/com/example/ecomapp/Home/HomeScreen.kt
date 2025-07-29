@@ -18,6 +18,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -40,7 +41,7 @@ fun HomeScreen(modifier: Modifier,
         NavItem("Favourite",Icons.Default.Favorite),
         NavItem("Profile",Icons.Default.AccountCircle)
     )
-    var isSelectedIndex by remember {
+    var isSelectedIndex by rememberSaveable {
         mutableIntStateOf(0)
     }
 

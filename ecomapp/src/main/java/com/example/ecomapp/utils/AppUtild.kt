@@ -3,6 +3,7 @@ package com.example.ecomapp.utils
 import android.content.Context
 import androidx.compose.ui.res.stringResource
 import com.example.ecomapp.R
+import com.example.ecomapp.signup.User
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference

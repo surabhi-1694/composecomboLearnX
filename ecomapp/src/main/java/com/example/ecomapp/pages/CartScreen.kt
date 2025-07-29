@@ -1,21 +1,31 @@
 package com.example.ecomapp.pages
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.ecomapp.CheckoutRoute
+import com.example.ecomapp.GlobalNavigator
 import com.example.ecomapp.signup.User
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -34,7 +44,7 @@ fun CartScreen(modifier: Modifier){
         mutableStateOf(User())
     }
     Column (modifier =
-        modifier.fillMaxSize().padding(top = 30.dp, start = 8.dp, end = 8.dp)){
+        modifier.fillMaxSize().padding(top = 0.dp, start = 8.dp, end = 0.dp)){
         DisposableEffect (key1 = Unit) {
            val listener =  Firebase.firestore.collection("Users")
                 .document(FirebaseAuth.getInstance().currentUser?.uid!!)
@@ -54,7 +64,7 @@ fun CartScreen(modifier: Modifier){
             }
         }
         Text(text = "Your Cart",
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(1.dp),
             textAlign = TextAlign.Start,
             style = TextStyle(fontSize = 20.sp,
             fontWeight = FontWeight.Bold ))
@@ -71,11 +81,17 @@ fun CartScreen(modifier: Modifier){
 //        In a Pair<A, B>:
 //        it.first → "ABC123" (the productId)
 //        it.second → 2 (the quantity)
-        LazyColumn{
-            items(userModel.value.cartItems.toList(),key = {it.first}){(productId, qty)->
-                CartListScreen(modifier= Modifier,productId = productId,qty =qty)
+//        Box(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(modifier = Modifier.weight(1f)){
+                items(userModel.value.cartItems.toList(),key ={it.first}) {(productId,qty)->
+        CartListScreen(modifier= Modifier,productId = productId,qty =qty)
+                }
             }
-        }
+            Button(onClick = {
+                GlobalNavigator.navController.navigate(CheckoutRoute)
+            }, modifier = Modifier.fillMaxWidth().padding(10.dp)) {
+                Text(text = "Checkout")
+            }
     }
 
 }
