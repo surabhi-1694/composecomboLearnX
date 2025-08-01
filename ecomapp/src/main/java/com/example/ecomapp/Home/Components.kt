@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -43,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import coil3.compose.AsyncImage
+import com.example.ecomapp.R
 import com.example.ecomapp.pages.ProductDetailActivity
 import com.example.ecomapp.signup.AuthViewModel
 import com.example.ecomapp.utils.CommonVericalSpacer
@@ -178,11 +180,11 @@ fun productListView(modifier: Modifier = Modifier,item:CategoryWiseProduct){
                 Row(modifier = Modifier,
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(20.dp)) {
-                    Text(text = "\u20B9${item.price}",
+                    Text(text = stringResource(R.string.rupee_symbol)+"${item.price}",
                         style = TextStyle(fontSize = 12.sp,
                             fontWeight = FontWeight.Bold)
                     )
-                    Text(text = "\u20B9${item.actualPrice}",
+                    Text(text = stringResource(R.string.rupee_symbol)+"${item.actualPrice}",
                         style = TextStyle(fontSize = 14.sp,
                             fontWeight = FontWeight.Normal, textDecoration = TextDecoration.LineThrough))
                     IconButton(onClick = {

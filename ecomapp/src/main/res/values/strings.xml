@@ -16,5 +16,6 @@
     <string name="txt_description">Product Description:</string>
     <string name="btn_addtocart">Add to Cart</string>
     <string name="cartItemAdded">Item has added in Cart</string>
+    <string name="rupee_symbol">\u20B9</string>
 
 </resources>

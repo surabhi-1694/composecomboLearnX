@@ -1,5 +1,6 @@
 package com.example.ecomapp.pages
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -55,6 +56,7 @@ fun CartListScreen(modifier: Modifier,productId:String,qty:Long){
     }
 
     LaunchedEffect(key1 = Unit) {
+        Log.e("TAG_CARTLIST ",productId)
         Firebase.firestore.collection("data")
             .document("stock")
             .collection("products")

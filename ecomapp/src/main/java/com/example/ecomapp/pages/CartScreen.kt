@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.example.ecomapp.CheckoutRoute
 import com.example.ecomapp.GlobalNavigator
 import com.example.ecomapp.signup.User
+import com.example.ecomapp.utils.getUserDocument
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
@@ -46,8 +47,8 @@ fun CartScreen(modifier: Modifier){
     Column (modifier =
         modifier.fillMaxSize().padding(top = 0.dp, start = 8.dp, end = 0.dp)){
         DisposableEffect (key1 = Unit) {
-           val listener =  Firebase.firestore.collection("Users")
-                .document(FirebaseAuth.getInstance().currentUser?.uid!!)
+            val userDoc = getUserDocument()
+           val listener =  userDoc
                 // use to verify task complete or not
                 // usage: if it is one time perform task if task's value/subvalue keep update on some buton trigger use snapshotlistenr it will get latest snapshot that is update data
 //                .get().addOnCompleteListener {
@@ -83,7 +84,8 @@ fun CartScreen(modifier: Modifier){
 //        it.second → 2 (the quantity)
 //        Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(modifier = Modifier.weight(1f)){
-                items(userModel.value.cartItems.toList(),key ={it.first}) {(productId,qty)->
+                items(userModel.value.cartItems.toList(),
+                    key ={it.first}) {(productId,qty)->
         CartListScreen(modifier= Modifier,productId = productId,qty =qty)
                 }
             }

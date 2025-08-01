@@ -1,8 +1,7 @@
 package com.example.ecomapp.utils
 
 import android.content.Context
-import androidx.compose.ui.res.stringResource
-import com.example.ecomapp.R
+import com.example.ecomapp.Home.CategoryWiseProduct
 import com.example.ecomapp.signup.User
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -11,6 +10,36 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
 
 
+
+
+fun calculateSubTotal(
+    productList: List<CategoryWiseProduct>,
+    userModel: User,
+    callback: (Float) -> Unit
+) {
+    var subtotal = 0f
+    productList.forEach {
+       val  qty = userModel.cartItems[it.id]?:0
+        subtotal +=  it.actualPrice.toLong() * qty
+    }
+    callback(subtotal)
+}
+
+fun calculateDiscount(subTotal:Float,callback: (Float) -> Unit){
+    callback((subTotal * (getDiscountPercentage()/100f)))
+}
+
+fun calculateTax(subTotal:Float,callback: (Float) -> Unit){
+    callback((subTotal * (getTaxPercentage()/100f)))
+}
+
+fun getDiscountPercentage():Float{
+    return 15.0f
+}
+
+fun getTaxPercentage():Float{
+    return 8.0f
+}
 
 fun getUserDocument(): DocumentReference {
      val  userDoc =
