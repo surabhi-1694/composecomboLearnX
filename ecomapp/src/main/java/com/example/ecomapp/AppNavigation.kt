@@ -2,6 +2,7 @@ package com.example.ecomapp
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -16,10 +17,11 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
 @Composable
-fun AppNavigation(modifier: Modifier) {
+fun AppNavigation(modifier: Modifier, context: MainActivity, _showDialog: MutableState<Boolean>) {
     val navController = rememberNavController()
     //can use nav controller  globally
       GlobalNavigator.navController = navController
+
 
     val isLoggedIn = Firebase.auth.currentUser != null
     Log.e("name ","${Firebase.auth.currentUser}")
@@ -40,7 +42,7 @@ fun AppNavigation(modifier: Modifier) {
             HomeScreen(modifier,navController)
         }
         composable<CheckoutRoute> {
-            CheckOutScreen(modifier,navController)
+            CheckOutScreen(modifier,paymentInterface = context,navController)
         }
 
         composable<CategoryPageRoute> { catpage->

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -23,22 +24,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.ecomapp.CheckoutRoute
+import com.example.ecomapp.GlobalNavigator
 import com.example.ecomapp.Home.CategoryWiseProduct
 import com.example.ecomapp.R
 import com.example.ecomapp.signup.User
+import com.example.ecomapp.utils.CommonButton
 import com.example.ecomapp.utils.CommonVericalSpacer
+import com.example.ecomapp.utils.PaymentListener
 import com.example.ecomapp.utils.calculateDiscount
 import com.example.ecomapp.utils.calculateSubTotal
 import com.example.ecomapp.utils.calculateTax
 import com.example.ecomapp.utils.getUserDocument
 
 @Composable
-fun CheckOutScreen(modifier: Modifier,navController: NavController,productViewModel: ProductViewModel = viewModel()){
-    val userModel = remember {
+fun CheckOutScreen(modifier: Modifier,paymentInterface:PaymentListener,navController: NavController,productViewModel: ProductViewModel = viewModel()){
+    var userModel = remember {
         mutableStateOf(User())
     }
 
@@ -69,6 +75,11 @@ fun CheckOutScreen(modifier: Modifier,navController: NavController,productViewMo
     }
 
 
+    /*
+    * here we get "cartItems " from "Users"
+    * document since we need to display product details
+    *
+    * */
     when(uiState.value){
        is ProductUiState.Loading->{
            //ui of loader
@@ -85,11 +96,14 @@ fun CheckOutScreen(modifier: Modifier,navController: NavController,productViewMo
             }
         }
         is ProductUiState.Success->{
-            // get reponse from viewmodel and set ui of list
+            // get response from viewmodel and set ui of list
             val products = (uiState.value as ProductUiState.Success).products
             val userDoc = getUserDocument()
             userDoc.get().addOnCompleteListener { userTask ->
                 val userResult = userTask.result.toObject(User::class.java)
+                if (userResult != null) {
+                    userModel.value = userResult
+                }
                 userResult?.let {
                     calculateSubTotal(
                         productList = products,
@@ -112,77 +126,45 @@ fun CheckOutScreen(modifier: Modifier,navController: NavController,productViewMo
         }
     }
 
-
-    /*
-    * here we get "cartItems " from "Users"
-    * document since we need to display product details
-    *
-    * */
-//    LaunchedEffect(Unit) {
-//        val userDoc = getUserDocument()
-//        userDoc.get().addOnCompleteListener {
-//            if(it.isSuccessful){
-//                val result = it.result.toObject(User::class.java)
-//                if(result !=null){
-//                    userModel.value = result
-//                    //here we get all products of user and then make list of those products that exists in cartitems of user
-//                    Firebase.firestore.collection("data")
-//                        .document("stock")
-//                        .collection("products")
-//                        .whereIn("id",userModel.value.cartItems.keys.toList())
-//                        .get().addOnCompleteListener{ tasks ->
-//                            if(tasks.isSuccessful){
-//                                val resultdata = tasks.result.toObjects(CategoryWiseProduct::class.java)
-//                                productList.addAll(resultdata)
-//                                calculateSubTotal(
-//                                    productList = productList,
-//                                    userModel = userModel){ subT ->
-//                                    subTotal.floatValue = subT
-//                                    Log.e("TAG_subT",subT.toString())
-//                                    Log.e("TAG_subTotal",subTotal.floatValue.toString())
-//
-//                                    calculateDiscount(subTotal = subT,callback = { dis ->
-//                                        discount.floatValue = dis
-//
-//                                    })
-//                                    calculateTax(subTotal = subT, callback = { taxPrice ->
-//                                        tax.floatValue = taxPrice
-//                                    })
-//                                    total.floatValue = subTotal.floatValue - discount.floatValue + tax.floatValue
-//                                }
-//                            }else{
-//                                Log.e("TAG_EXEPTION",tasks.exception.toString())
-//                            }
-//                        }
-//                }
-//            }
-//        }
-//    }
-
     Column(modifier= modifier.fillMaxSize()
         .padding(top = 20.dp, start = 15.dp, end = 5.dp)) {
-        Text(text = "CheckOut", style = TextStyle(fontSize = 18.sp))
+        Text(text = "CheckOut", style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold))
         CommonVericalSpacer(16.dp)
         HorizontalDivider()
+        Text(modifier = modifier, text = "Deliver To: ", style = TextStyle(fontWeight = FontWeight.Bold))
+        Text(modifier = modifier, text = userModel.value.address )
         Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(15.dp)) {
             Text(text = "SubTotal : ",style = TextStyle(fontWeight = FontWeight.Bold))
             Text(text = stringResource(R.string.rupee_symbol)+
                 "${subTotal.floatValue}", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 16.sp))
         }
         Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-            Text(text = "discount : ",style = TextStyle(fontWeight = FontWeight.Bold))
+            Text(text = "discount (-): ",style = TextStyle(fontWeight = FontWeight.Bold))
             Text(text = stringResource(R.string.rupee_symbol)+"${discount.floatValue}", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 16.sp))
         }
         Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-            Text(text = "Tax : ",style = TextStyle(fontWeight = FontWeight.Bold))
+            Text(text = "Tax (+): ",style = TextStyle(fontWeight = FontWeight.Bold))
             Text(text = stringResource(R.string.rupee_symbol)+"${tax.floatValue}", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 16.sp))
         }
         CommonVericalSpacer(16.dp)
         HorizontalDivider()
-        Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-            Text(text = "Total : ",style = TextStyle(fontWeight = FontWeight.Bold,fontSize = 20.sp))
-            Text(text = stringResource(R.string.rupee_symbol)+"${total.floatValue}", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp))
+        Text(text = "To Pay: ",modifier = modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+            Row(modifier = modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center) {
+                Text(text = "Total : "
+                    ,style = TextStyle(fontWeight = FontWeight.Bold,fontSize = 20.sp))
+                Text(text = stringResource(R.string.rupee_symbol)+"${total.floatValue}", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp))
         }
         CommonVericalSpacer(10.dp)
+        Button(onClick = {
+            //redirect to razor pay // manage success failure
+            /* we will create simple interface for success failure just to redirect from page
+            // in real time scenario razorpay will provide success failure from it's dependancy's paymentlistenr method
+            * */
+            //for testing purpose we can either call success or failure
+            paymentInterface.paymentSuccess()
+        }, modifier = Modifier.fillMaxWidth().padding(10.dp)) {
+            Text(text = "Pay Now")
+        }
     }
 }

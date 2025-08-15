@@ -2,14 +2,14 @@ package com.example.ecomapp.utils
 
 import android.content.Context
 import com.example.ecomapp.Home.CategoryWiseProduct
+import com.example.ecomapp.Order.OrderModel
 import com.example.ecomapp.signup.User
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
-
-
+import java.util.UUID
 
 
 fun calculateSubTotal(
@@ -110,6 +110,32 @@ fun removeFromCart(context: Context,productId: String,isRemoveAll:Boolean = fals
                 }
             }
 
+
+        }
+    }
+
+}
+
+fun addOrderAndRemoveCart(){
+    val userDoc = getUserDocument()
+    userDoc.get().addOnCompleteListener{
+        if(it.isSuccessful){
+            val currentCart = it.result.get("cartItems") as? Map<String,Long>?: emptyMap()
+            //create order document (table for order history add success / fail order to it)
+            //her we create order data class add necessary info. to it and push it firestore DB
+
+            val order = OrderModel(
+                id = "ORD_"+UUID.randomUUID().toString().replace("-","").take(10).uppercase(),
+                userId = FirebaseAuth.getInstance().currentUser?.uid!!,
+                orderStatus = "ORDERD",
+                address = it.result.get("address").toString(),
+                orderItems = currentCart
+            )
+
+            Firebase.firestore.collection("order")
+                .document(order.id).set(order).addOnCompleteListener {
+                    userDoc.update("cartItems",FieldValue.delete())
+                }
 
         }
     }

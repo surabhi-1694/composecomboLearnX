@@ -1,13 +1,9 @@
 package com.example.ecomapp.pages
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ecomapp.Home.CategoryWiseProduct
 import com.example.ecomapp.signup.User
-import com.example.ecomapp.utils.calculateDiscount
-import com.example.ecomapp.utils.calculateSubTotal
-import com.example.ecomapp.utils.calculateTax
 import com.example.ecomapp.utils.getUserDocument
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -20,10 +16,8 @@ class ProductViewModel: ViewModel() {
     private val _uiState = MutableStateFlow<ProductUiState>(ProductUiState.Loading)
     val uiState:StateFlow<ProductUiState> = _uiState
     init {
-
         fetchProducts()
     }
-
     private fun fetchProducts() {
         viewModelScope.launch {
             try {
@@ -46,22 +40,6 @@ class ProductViewModel: ViewModel() {
                                     if(tasks.isSuccessful){
                                         val resultdata = tasks.result.toObjects(CategoryWiseProduct::class.java)
                                         _uiState.value = ProductUiState.Success(resultdata.toList())
-//
-//                                        calculateSubTotal(
-//                                            productList = resultdata,
-//                                            userModel = userResult){ subT ->
-//                                            subTotal.floatValue = subT
-//                                            Log.e("TAG_subT",subT.toString())
-//                                            Log.e("TAG_subTotal",subTotal.floatValue.toString())
-//
-//                                            calculateDiscount(subTotal = subT,callback = { dis ->
-//                                                discount.floatValue = dis
-//                                            })
-//                                            calculateTax(subTotal = subT, callback = { taxPrice ->
-//                                                tax.floatValue = taxPrice
-//                                            })
-//                                            total.floatValue = subTotal.floatValue - discount.floatValue + tax.floatValue
-//                                        }
                                     }else{
                                         _uiState.value = ProductUiState.Error(tasks.exception?.message ?: "Error loading products")
                                     }
