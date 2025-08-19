@@ -9,5 +9,4 @@ data class OrderModel(
     val date:Timestamp = Timestamp.now(),
     val address:String="",
     val orderItems:Map<String,Long> = emptyMap()
-
 )

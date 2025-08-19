@@ -7,8 +7,10 @@ import com.example.ecomapp.signup.User
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
+import kotlinx.coroutines.tasks.await
 import java.util.UUID
 
 
@@ -85,6 +87,7 @@ fun addToCart(context: Context,productId:String){
         }
     }
 }
+
 
 fun removeFromCart(context: Context,productId: String,isRemoveAll:Boolean = false){
     val userDoc = getUserDocument()

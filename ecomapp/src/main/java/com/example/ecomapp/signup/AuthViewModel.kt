@@ -129,9 +129,9 @@ class AuthViewModel:ViewModel() {
            .get()
            .await()
        return categoriesList.documents
-
-
     }
+
+
 
 
     suspend fun getCategoryWiseProduct(categoryId:String): MutableList<DocumentSnapshot> {

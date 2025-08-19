@@ -12,9 +12,11 @@ import androidx.navigation.toRoute
 import com.example.ecomapp.Home.CategoryWiseProductListPageView
 import com.example.ecomapp.Home.HomeScreen
 import com.example.ecomapp.pages.CheckOutScreen
+import com.example.ecomapp.pages.OrderListScreen
 import com.example.ecomapp.signup.SignUpScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.google.firestore.admin.v1.Index.IndexField.Order
 
 @Composable
 fun AppNavigation(modifier: Modifier, context: MainActivity, _showDialog: MutableState<Boolean>) {
@@ -43,6 +45,10 @@ fun AppNavigation(modifier: Modifier, context: MainActivity, _showDialog: Mutabl
         }
         composable<CheckoutRoute> {
             CheckOutScreen(modifier,paymentInterface = context,navController)
+        }
+
+        composable<OrderRoute> {
+            OrderListScreen(modifier,navController)
         }
 
         composable<CategoryPageRoute> { catpage->

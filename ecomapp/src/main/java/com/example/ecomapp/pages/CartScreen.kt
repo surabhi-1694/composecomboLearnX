@@ -1,6 +1,7 @@
 package com.example.ecomapp.pages
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -86,14 +87,26 @@ fun CartScreen(modifier: Modifier){
             LazyColumn(modifier = Modifier.weight(1f)){
                 items(userModel.value.cartItems.toList(),
                     key ={it.first}) {(productId,qty)->
-        CartListScreen(modifier= Modifier,productId = productId,qty =qty)
+                     CartListScreen(modifier= Modifier,productId = productId,qty =qty)
                 }
             }
+
+        if(userModel.value.cartItems.isNotEmpty()){
             Button(onClick = {
                 GlobalNavigator.navController.navigate(CheckoutRoute)
             }, modifier = Modifier.fillMaxWidth().padding(10.dp)) {
                 Text(text = "Checkout")
             }
+        }else{
+            Column(modifier = Modifier.fillMaxHeight(),
+                verticalArrangement = Arrangement.Center) {
+                Text( text = "No Items in Cart! Looks like it's time for shopping!!!!.."
+                    , textAlign = TextAlign.Center
+                    , style = TextStyle(fontWeight = FontWeight.ExtraBold, fontSize = 20.sp))
+            }
+
+        }
+
     }
 
 }

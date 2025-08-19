@@ -43,7 +43,10 @@ import com.example.ecomapp.utils.calculateTax
 import com.example.ecomapp.utils.getUserDocument
 
 @Composable
-fun CheckOutScreen(modifier: Modifier,paymentInterface:PaymentListener,navController: NavController,productViewModel: ProductViewModel = viewModel()){
+fun CheckOutScreen(modifier: Modifier
+                   ,paymentInterface:PaymentListener
+                   ,navController: NavController
+                   ,productViewModel: ProductViewModel = viewModel()){
     var userModel = remember {
         mutableStateOf(User())
     }
@@ -163,6 +166,8 @@ fun CheckOutScreen(modifier: Modifier,paymentInterface:PaymentListener,navContro
             * */
             //for testing purpose we can either call success or failure
             paymentInterface.paymentSuccess()
+
+
         }, modifier = Modifier.fillMaxWidth().padding(10.dp)) {
             Text(text = "Pay Now")
         }

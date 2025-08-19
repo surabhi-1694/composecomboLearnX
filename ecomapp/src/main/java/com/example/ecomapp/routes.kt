@@ -22,6 +22,9 @@ object ProfileRoute
 object CheckoutRoute
 
 @Serializable
+object OrderRoute
+
+@Serializable
 data class CategoryPageRoute(val categoryId:String)
 
 
