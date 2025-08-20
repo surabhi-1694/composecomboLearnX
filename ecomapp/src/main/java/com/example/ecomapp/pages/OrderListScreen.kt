@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +32,7 @@ import com.example.ecomapp.Order.OrderItem
 import com.example.ecomapp.Order.OrderModel
 import com.example.ecomapp.Order.OrderUiState
 import com.example.ecomapp.Order.OrderViewModel
+import com.example.ecomapp.R
 import com.example.ecomapp.utils.CommonHorizontalSpacer
 
 @Composable
@@ -53,26 +55,38 @@ fun OrderListScreen(modifier: Modifier,navController: NavController,orderViewMod
 
         }
     }
-        Column(modifier = modifier.fillMaxSize().padding(20.dp)) {
-            Text(text = "My Orders: ", textAlign = TextAlign.Start, fontWeight = FontWeight.Bold,
+        Column(modifier = modifier.fillMaxWidth().padding(top = 10.dp, start = 10.dp, end = 5.dp, bottom = 0.dp)) {
+            Text(text = "My Orders ",
+                textAlign = TextAlign.Start,
+                fontWeight = FontWeight.Bold,
                 fontSize = 18.sp)
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 items(orderList.value, key = {it.id}){ orderItem->
-                    Card(modifier = modifier.fillMaxWidth()) {
                         Column(modifier =  Modifier.fillMaxWidth()) {
                             orderItem.productItems.forEach { productItems->
-                                Column(modifier = Modifier.fillMaxWidth(),
-                                    verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                                    Row(modifier = Modifier.fillMaxWidth()) {
-                                        AsyncImage(model = productItems.product.imageUrls[0], contentDescription = "prodcut image",modifier = Modifier.size(90.dp))
-                                        Text(productItems.product.title)
+                                Card(modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp)) {
+
+                                    Column(modifier = Modifier.fillMaxWidth().padding(10.dp)) {
+                                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+                                            AsyncImage(model = productItems.product.imageUrls[0], contentDescription = "prodcut image",modifier = Modifier.size(90.dp))
+                                            Text(productItems.product.title)
+
+                                        }
+                                        CommonHorizontalSpacer(5.dp)
+                                        Row {
+                                            Text("Price:")
+                                            Text("\u20B9${productItems.product.price}")
+                                        }
+
+                                        Text(orderItem.orderStatus, style = TextStyle(fontWeight = FontWeight.Bold, color = colorResource(
+                                            R.color.grdient_green3)))
+
                                     }
-                                    CommonHorizontalSpacer(10.dp)
                                 }
+
                             }
                         }
-                        Text(orderItem.orderStatus)
-                    }
+
                 }
             }
         }

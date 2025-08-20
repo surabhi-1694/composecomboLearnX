@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity(),PaymentListener {
                 ) { innerPadding ->
                     AppNavigation(Modifier
                         .padding(innerPadding)
-                        .background(colorResource(R.color.grdient_green3)),
+                        .background(colorResource(R.color.white)),
                         context= this@MainActivity,
                         _showDialog =_showDialog)
                 }

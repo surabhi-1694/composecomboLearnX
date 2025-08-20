@@ -31,42 +31,45 @@ class OrderViewModel:ViewModel() {
 
             // Collect all unique productIds across all orders
             val allProductIds = orderResultList.flatMap { it.orderItems.keys }.distinct()
-            //check for allProductIds  empty array
+            if(allProductIds.isNotEmpty()){
+                //check for allProductIds  empty array
 
-            Firebase.firestore.collection("data")
-                .document("stock")
-                .collection("products")
-                .whereIn("id",allProductIds)
-                .get().addOnCompleteListener { product->
-                    if(product.isSuccessful){
-                        val products = product.result.toObjects(CategoryWiseProduct::class.java)
-                        if (products.isNotEmpty()) {
-                            //associatedBy will create map with key in this case is and if find out repeat id it will consider the last one
-                            val productMap: Map<String, CategoryWiseProduct> = products.associateBy { it.id }
+                Firebase.firestore.collection("data")
+                    .document("stock")
+                    .collection("products")
+                    .whereIn("id",allProductIds)
+                    .get().addOnCompleteListener { product->
+                        if(product.isSuccessful){
+                            val products = product.result.toObjects(CategoryWiseProduct::class.java)
+                            if (products.isNotEmpty()) {
+                                //associatedBy will create map with key in this case is and if find out repeat id it will consider the last one
+                                val productMap: Map<String, CategoryWiseProduct> = products.associateBy { it.id }
 
-                            val orderWithProductList = orderResultList.map { order->
+                                val orderWithProductList = orderResultList.map { order->
                                     val productList = order.orderItems.mapNotNull { (prodId, qty) ->
                                         productMap[prodId]?.let { product ->
                                             ProductWithQuantity(product, qty)
                                         }
+                                    }
+                                    OrderItem(id = order.id,
+                                        userId = order.userId,
+                                        orderStatus = order.orderStatus,
+                                        date = order.date,
+                                        address = order.address,
+                                        productItems = productList)
+
+                                }
+                                _uiState.value = OrderUiState.Success(orderWithProductList)
+
+                            }else{
+                                _uiState.value = OrderUiState.Error("No Product Found.")
                             }
-                                      OrderItem(id = order.id,
-                                          userId = order.userId,
-                                          orderStatus = order.orderStatus,
-                                          date = order.date,
-                                          address = order.address,
-                                          productItems = productList)
-
-                              }
-                            _uiState.value = OrderUiState.Success(orderWithProductList)
-
                         }else{
-                            _uiState.value = OrderUiState.Error("No Product Found.")
+                            _uiState.value = OrderUiState.Error("Something went wrong.")
                         }
-                    }else{
-                        _uiState.value = OrderUiState.Error("Something went wrong.")
                     }
-                }
+            }
+
 
         }
 

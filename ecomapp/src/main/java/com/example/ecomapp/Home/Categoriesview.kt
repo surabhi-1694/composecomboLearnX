@@ -73,7 +73,7 @@ fun Categoriesview(
                     shape = RoundedCornerShape(12.dp),
                     elevation = CardDefaults.cardElevation(10.dp),
                     colors =
-                        CardDefaults.cardColors(containerColor = Color.Transparent),
+                        CardDefaults.cardColors(containerColor = colorResource(id = R.color.grdient_green3)),
                 ) {
                     Column(modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -84,9 +84,9 @@ fun Categoriesview(
                         )
                         CommonVericalSpacer(10.dp)
                         Text(text = item.displayname,
-                            style = TextStyle(textAlign = TextAlign.Center,
+                            style = TextStyle(fontWeight = FontWeight.Bold, textAlign = TextAlign.Center,
                                 fontSize = 12.sp,
-                                color = colorResource(id = R.color.white)
+                                color = colorResource(id = R.color.purple_500)
                             ))
 
 
