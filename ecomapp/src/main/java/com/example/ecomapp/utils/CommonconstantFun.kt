@@ -13,6 +13,14 @@ enum class DifferentScreenConfig{
 }
 
 
+enum class OrderStatus{
+    ORDERED,
+    SHIPPED,
+    ARRIVED,
+    DELIVERED
+}
+
+
 object windowSizeClass{
     fun fromWindowSizeClass(windowSizeClass: WindowSizeClass):DifferentScreenConfig{
         val widthClass = windowSizeClass.windowWidthSizeClass

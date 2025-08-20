@@ -130,7 +130,7 @@ fun addOrderAndRemoveCart(){
             val order = OrderModel(
                 id = "ORD_"+UUID.randomUUID().toString().replace("-","").take(10).uppercase(),
                 userId = FirebaseAuth.getInstance().currentUser?.uid!!,
-                orderStatus = "ORDERD",
+                orderStatus = OrderStatus.ORDERED.name,
                 address = it.result.get("address").toString(),
                 orderItems = currentCart
             )
