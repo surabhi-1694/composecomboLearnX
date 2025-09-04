@@ -147,5 +147,5 @@ fun TodoItem(index: Int, item: TodoDB, viewModel: TodoViewModel, onDelete: () ->
 
 
 fun convertDate(createdAt: Date): String {
-    return SimpleDateFormat("hh:mm:aa , dd/mm/yy").format(createdAt)
+    return SimpleDateFormat("hh:mm:aa , dd/MMM/YYYY").format(createdAt)
 }
