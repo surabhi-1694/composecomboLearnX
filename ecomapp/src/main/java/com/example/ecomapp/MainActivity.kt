@@ -19,6 +19,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.ecomapp.ui.theme.Android2oTheme
 import com.example.ecomapp.utils.PaymentListener
+import com.example.ecomapp.utils.SharedPref
 import com.example.ecomapp.utils.ShowToast
 import com.example.ecomapp.utils.addOrderAndRemoveCart
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -33,6 +34,11 @@ class MainActivity : ComponentActivity(),PaymentListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
+        SharedPref.init(getApplicationContext());
+
+        SharedPref.getString("LATITUDE", "")
+        SharedPref.putString("LATITUDE", "24,56")
+
 //        enableEdgeToEdge()
 //        setContentView(R.layout.activity_main)
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
