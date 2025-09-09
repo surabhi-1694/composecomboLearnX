@@ -51,7 +51,8 @@ fun CartScreen(modifier: Modifier){
             val userDoc = getUserDocument()
            val listener =  userDoc
                 // use to verify task complete or not
-                // usage: if it is one time perform task if task's value/subvalue keep update on some buton trigger use snapshotlistenr it will get latest snapshot that is update data
+                // usage: if it is one time perform task
+               // if task's value/subvalue keep update on some buton trigger use snapshotlistenr it will get latest snapshot that is update data
 //                .get().addOnCompleteListener {
                 .addSnapshotListener { it, error ->
                     if(it!=null){

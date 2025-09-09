@@ -1,5 +1,6 @@
 package com.example.bottomnavigationbar
 
+import android.util.Log
 import androidx.compose.animation.Animatable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -47,10 +48,11 @@ fun NotificationScreen(){
         "GENERAL",
         "BUSINESS",
         "entertainment",
-        "health",
+        "healthy",
         "science",
         "sports",
-        "technology"
+        "technology",
+        "wealthy"
     )
 
     var searchString by rememberSaveable {
@@ -85,9 +87,12 @@ fun NotificationScreen(){
         OutlinedTextField(modifier = Modifier.fillMaxWidth().height(90.dp),
             value = searchString, onValueChange = {
                 searchString = it
+                Log.e("SEARCHSTRING ",searchString)
                 if(it.isEmpty()){
                     filterList = categoryList
-                }else if(it.length == 2){
+                }else if(it.length >= 2){
+                    Log.e("SEARCHSTRING_2",searchString)
+
                     filterList =   filterContactsSlidingWindow(contacts = categoryList,searchString)
                 }
             }, trailingIcon = {
@@ -138,14 +143,16 @@ fun filterContactsSlidingWindow(contacts: List<String>, query: String): List<Str
     return filtered
 }
 
-// DSA-based sliding window matcher
+// DSA-based sliding window matcher  health = heal -
+//
 fun slidingWindowMatch(text: String, pattern: String): Boolean {
-    val n = text.length
-    val m = pattern.length
+    val n = text.length //ex. general = 7
+    val m = pattern.length // ex. gen = 3
 
     if (m > n) return false
 
-    for (i in 0..(n - m)) { val window = text.substring(i, i + m)
+    //n-m = 7-3 = 4
+    for (i in 0..(n - m)) { val window = text.substring(i, i + m) //substring (0, 0+4) = gene
         if (window == pattern) return true
     }
 

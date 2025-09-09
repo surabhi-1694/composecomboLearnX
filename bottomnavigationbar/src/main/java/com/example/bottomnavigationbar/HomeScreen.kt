@@ -274,6 +274,7 @@ fun categoryList(dataModel: newsDataModel, modifier: Modifier) {
             .padding(5.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        //this will connect an atttention as sson as isSearchSelected value change because of compose effect :)
         if (isSearchSelected) {
             Log.e("Search_", "SEARHC KEEP CALLING")
             OutlinedTextField(modifier = Modifier
