@@ -55,7 +55,6 @@ import com.kwabenaberko.newsapilib.models.Source
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun HomeScreen(navController: NavController, dataModel: newsDataModel) {
-    val articleSources by dataModel.articlesSource.observeAsState(emptyList())
 
     val articlevatSources by dataModel.categoryWiseNews.observeAsState(emptyList())
 
@@ -76,7 +75,7 @@ fun HomeScreen(navController: NavController, dataModel: newsDataModel) {
             fontWeight = FontWeight.Bold, fontSize = 25.sp
         )
         //horizontal static list of category
-        categoryList(dataModel,modifier)
+        CategoryList(dataModel,modifier)
         Box(
             modifier = modifier.fillMaxHeight().weight(1f)
         ) {
@@ -250,7 +249,7 @@ fun Sourceslist(
 }
 
 @Composable
-fun categoryList(dataModel: newsDataModel, modifier: Modifier) {
+fun CategoryList(dataModel: newsDataModel, modifier: Modifier) {
 
     var isSearchSelected by remember {
         mutableStateOf(false)
