@@ -16,49 +16,49 @@ import com.example.ecomapp.pages.OrderListScreen
 import com.example.ecomapp.signup.SignUpScreen
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import com.google.firestore.admin.v1.Index.IndexField.Order
 
 @Composable
 fun AppNavigation(modifier: Modifier, context: MainActivity, _showDialog: MutableState<Boolean>) {
     val navController = rememberNavController()
     //can use nav controller  globally
-      GlobalNavigator.navController = navController
+    GlobalNavigator.navController = navController
 
 
     val isLoggedIn = Firebase.auth.currentUser != null
-    Log.e("name ","${Firebase.auth.currentUser}")
-    val firstPage = if(isLoggedIn) HomeRoute else AuthRoute
+    Log.e("name ", "${Firebase.auth.currentUser}")
+    val firstPage = if (isLoggedIn) HomeRoute else AuthRoute
 
     NavHost(navController, startDestination = firstPage) {
         //Start Destination
         composable<AuthRoute> {
-            AuthScreen(modifier,navController)
+            AuthScreen(modifier, navController)
         }
         composable<LoginRoute> {
-            LoginScreen(modifier,navController)
+            LoginScreen(modifier, navController)
         }
         composable<SignUpRoute> {
-            SignUpScreen(modifier,navController)
+            SignUpScreen(modifier, navController)
         }
         composable<HomeRoute> {
-            HomeScreen(modifier,navController)
+            HomeScreen(modifier, navController)
         }
         composable<CheckoutRoute> {
-            CheckOutScreen(modifier,paymentInterface = context,navController)
+            CheckOutScreen(modifier, paymentInterface = context, navController)
         }
 
         composable<OrderRoute> {
-            OrderListScreen(modifier,navController)
+//            textiniRow()
+            OrderListScreen(modifier, navController)
         }
 
-        composable<CategoryPageRoute> { catpage->
+        composable<CategoryPageRoute> { catpage ->
             val catPageFlow = catpage.toRoute<CategoryPageRoute>()
-            CategoryWiseProductListPageView(categoryId =  catPageFlow.categoryId)
+            CategoryWiseProductListPageView(categoryId = catPageFlow.categoryId)
         }
     }
 
 }
 
-object GlobalNavigator{
-    lateinit var  navController:NavHostController
+object GlobalNavigator {
+    lateinit var navController: NavHostController
 }

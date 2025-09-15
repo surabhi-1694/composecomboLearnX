@@ -39,52 +39,71 @@ fun Profile(modifier: Modifier) {
 
     LaunchedEffect(Unit) {
         val userDoc = getUserDocument()
-        userDoc.get().addOnCompleteListener { userTask->
-           val userResult =  userTask.result.toObject(User::class.java)
-            if (userResult!=null){
+        userDoc.get().addOnCompleteListener { userTask ->
+            val userResult = userTask.result.toObject(User::class.java)
+            if (userResult != null) {
                 usermodel.value = userResult
             }
         }
     }
-    Column(modifier = modifier.fillMaxSize().padding(10.dp)) {
+    Column(modifier = modifier
+        .fillMaxSize()
+        .padding(10.dp)) {
         //name ,address,profile image, order history, payment history.
-        Text(text= "Profile page", style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp))
+        Text(
+            text = "Profile page",
+            style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
+        )
 
-        Image(modifier = Modifier.fillMaxWidth().size(200.dp), painter = painterResource(R.drawable.outline_face_2_24),
-            contentDescription = "Profile picture")
-        Text(text = "Name :", textAlign = TextAlign.Center,
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(200.dp),
+            painter = painterResource(R.drawable.outline_face_2_24),
+            contentDescription = "Profile picture"
+        )
+        Text(
+            text = "Name :", textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
-            fontSize = 20.sp)
+            fontSize = 20.sp
+        )
 
-        Text(text = usermodel.value.name, textAlign = TextAlign.Center,
+        Text(
+            text = usermodel.value.name, textAlign = TextAlign.Center,
             fontWeight = FontWeight.Normal,
-            fontSize = 16.sp)
+            fontSize = 16.sp
+        )
         CommonHorizontalSpacer(10.dp)
-        Text(text = "Address: ", textAlign = TextAlign.Center,
+        Text(
+            text = "Address: ", textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
-            fontSize = 20.sp)
-        Text(text = usermodel.value.address, textAlign = TextAlign.Center,
+            fontSize = 20.sp
+        )
+        Text(
+            text = usermodel.value.address, textAlign = TextAlign.Center,
             fontWeight = FontWeight.Normal,
-            fontSize = 16.sp)
+            fontSize = 16.sp
+        )
 
         CommonHorizontalSpacer(10.dp)
 
         Button(onClick = {
+//            GlobalNavigator.navController.navigate(OrderRoute)
             GlobalNavigator.navController.navigate(OrderRoute)
-        },modifier = Modifier.fillMaxWidth()) {
-            Text(text= "View My Orders: ")
+        }, modifier = Modifier.fillMaxWidth()) {
+            Text(text = "View My Orders: ")
         }
         CommonHorizontalSpacer(10.dp)
 
         Button(onClick = {
             Firebase.auth.signOut()
-            GlobalNavigator.navController.navigate(AuthRoute){ // name of screen where you want to navigate
-                popUpTo<HomeRoute>{ // name of the screen which you wan to remove from back stack ; probably the previous one
+            GlobalNavigator.navController.navigate(AuthRoute) { // name of screen where you want to navigate
+                popUpTo<HomeRoute> { // name of the screen which you wan to remove from back stack ; probably the previous one
                     inclusive = true
                 }
             }
-        },modifier = Modifier.fillMaxWidth()) {
-            Text(text =" Logout")
+        }, modifier = Modifier.fillMaxWidth()) {
+            Text(text = " Logout")
         }
 
     }

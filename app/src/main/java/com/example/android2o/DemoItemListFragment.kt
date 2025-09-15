@@ -1,12 +1,12 @@
 package com.example.android2o
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android2o.placeholder.PlaceholderContent
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -44,13 +44,13 @@ class DemoItemListFragment : BottomSheetDialogFragment() {
                 adapter = MyItemRecyclerViewAdapter(PlaceholderContent.ITEMS)
             }
         }
-        createCheckFun()
+
 
         return view
     }
 
     private fun createCheckFun() {
-        lifecycleScope.apply {  }
+        lifecycleScope.apply { }
     }
 
     companion object {

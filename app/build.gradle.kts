@@ -69,7 +69,8 @@ dependencies {
 
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.legacy.support.v4)
+    //why need to add this purpose
+//    implementation(libs.androidx.legacy.support.v4)
 
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -85,7 +86,7 @@ dependencies {
 
     //coil
     implementation(libs.coilImageCompose)
-    
+
     //room
     /**-Room
      * make sure to match version of kotlin compiler , kotlin ksp , kotlin compose compiler
