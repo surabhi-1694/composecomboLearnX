@@ -49,6 +49,7 @@ fun AppNavigation(modifier: Modifier, context: MainActivity, _showDialog: Mutabl
         composable<OrderRoute> {
 //            textiniRow()
             OrderListScreen(modifier, navController)
+//            checkScreen()
         }
 
         composable<CategoryPageRoute> { catpage ->

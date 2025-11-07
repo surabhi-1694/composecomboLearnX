@@ -17,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -31,15 +30,16 @@ import com.example.ecomapp.pages.HomePage
 import com.example.ecomapp.pages.Profile
 
 @Composable
-fun HomeScreen(modifier: Modifier,
-               navController: NavHostController,
-               viewmodel: DataStoreModel = viewModel()
+fun HomeScreen(
+    modifier: Modifier,
+    navController: NavHostController,
+    viewmodel: DataStoreModel = viewModel()
 ) {
     val navItemList = listOf(
         NavItem("Home", Icons.Default.Home),
-        NavItem("Cart",Icons.Default.ShoppingCart),
-        NavItem("Favourite",Icons.Default.Favorite),
-        NavItem("Profile",Icons.Default.AccountCircle)
+        NavItem("Cart", Icons.Default.ShoppingCart),
+        NavItem("Favourite", Icons.Default.Favorite),
+        NavItem("Profile", Icons.Default.AccountCircle)
     )
     var isSelectedIndex by rememberSaveable {
         mutableIntStateOf(0)
@@ -48,50 +48,56 @@ fun HomeScreen(modifier: Modifier,
     //just like observing from livedata observer we are observing this as collectstate
     val prefBadgeCount by viewmodel.intBadgeValue.collectAsState()
 
-    Scaffold (
+    Scaffold(
         bottomBar = {
             NavigationBar {
-                navItemList.forEachIndexed{index,navItem ->
-                    NavigationBarItem(selected = index==isSelectedIndex,
+                navItemList.forEachIndexed { index, navItem ->
+                    NavigationBarItem(
+                        selected = index == isSelectedIndex,
                         onClick = {
                             isSelectedIndex = index
                         },
                         icon = {
-                            BadgedBox( badge = {
-                                Badge(){
-                                    Text(text =  prefBadgeCount.toString())
+                            BadgedBox(badge = {
+                                Badge() {
+                                    Text(text = prefBadgeCount.toString())
                                 }
                             }
                             ) {
-                                Icon(imageVector = navItem.icon,
-                                    contentDescription = navItem.label)
+                                Icon(
+                                    imageVector = navItem.icon,
+                                    contentDescription = navItem.label
+                                )
                             }
 
-                    })
+                        })
                 }
 
             }
         }
-    ){
-        ContentScreen(modifier = modifier.padding(it),isSelectedIndex)
+    ) { innerpadding ->
+        ContentScreen(modifier = modifier.padding(innerpadding), isSelectedIndex)
     }
 
 }
 
 
 @Composable
-fun ContentScreen(modifier: Modifier, isSelectedIndex: Int){
-    when(isSelectedIndex){
-        0->{
+fun ContentScreen(modifier: Modifier, isSelectedIndex: Int) {
+    when (isSelectedIndex) {
+        0 -> {
             HomePage(modifier)
         }
-        1->{
+
+        1 -> {
             CartScreen(modifier)
         }
-        2->{
+
+        2 -> {
             FavouritePage((modifier))
         }
-        3->{
+
+        3 -> {
             Profile(modifier)
         }
 
@@ -99,4 +105,4 @@ fun ContentScreen(modifier: Modifier, isSelectedIndex: Int){
 
 }
 
-data class NavItem(val label:String, val icon: ImageVector)
+data class NavItem(val label: String, val icon: ImageVector)

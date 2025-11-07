@@ -18,7 +18,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -60,34 +59,45 @@ fun Categoriesview(
     }
     CommonVericalSpacer(10.dp)
     Column {
-        Text(text = "Categories",
-            fontWeight = FontWeight.ExtraBold, fontSize = 30.sp)
+        Text(
+            text = "Categories",
+            fontWeight = FontWeight.ExtraBold, fontSize = 30.sp
+        )
         CommonVericalSpacer(10.dp)
-        LazyRow(horizontalArrangement = Arrangement.spacedBy(10.dp)
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(categoriesList.value) { item ->
                 Card(
-                    modifier = Modifier.size(80.dp).clickable {
-                        GlobalNavigator.navController.navigate(CategoryPageRoute(item.id))
-                    },
+                    modifier = Modifier
+                        .size(80.dp)
+                        .clickable {
+                            GlobalNavigator.navController.navigate(CategoryPageRoute(item.id))
+                        },
                     shape = RoundedCornerShape(12.dp),
                     elevation = CardDefaults.cardElevation(10.dp),
                     colors =
                         CardDefaults.cardColors(containerColor = colorResource(id = R.color.grdient_green3)),
                 ) {
-                    Column(modifier = Modifier.fillMaxSize(),
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center) {
-                        AsyncImage(model = item.imageurl ,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        AsyncImage(
+                            model = item.imageurl,
                             contentDescription = "Categories Image",
                             modifier = modifier.size(40.dp)
                         )
                         CommonVericalSpacer(10.dp)
-                        Text(text = item.displayname,
-                            style = TextStyle(fontWeight = FontWeight.Bold, textAlign = TextAlign.Center,
+                        Text(
+                            text = item.displayname,
+                            style = TextStyle(
+                                fontWeight = FontWeight.Bold, textAlign = TextAlign.Center,
                                 fontSize = 12.sp,
                                 color = colorResource(id = R.color.purple_500)
-                            ))
+                            )
+                        )
 
 
                     }
@@ -97,7 +107,6 @@ fun Categoriesview(
             }
         }
     }
-
 
 
 }
