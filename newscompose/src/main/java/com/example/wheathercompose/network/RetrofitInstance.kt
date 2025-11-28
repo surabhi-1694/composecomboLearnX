@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitInstance {
     private const val BaseURL = "https://newsapi.org"
 
+    //    d855f93fe2e443ab8b47fff0dcfc8df5
     val client = OkHttpClient.Builder().addInterceptor { chain ->
         val request = chain.request().newBuilder()
             .addHeader("User-Agent", "Android")
@@ -24,6 +25,6 @@ object RetrofitInstance {
 
     }
 
-    val newsAPI:ApiInterface = getInstance().create(ApiInterface::class.java)
+    val newsAPI: ApiInterface = getInstance().create(ApiInterface::class.java)
 
 }
