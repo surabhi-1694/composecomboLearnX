@@ -23,6 +23,7 @@ class LifeCycleFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    @Deprecated("Deprecated in Java")
     override fun onAttachFragment(childFragment: Fragment) {
         super.onAttachFragment(childFragment)
         Log.e("LEfyCylce_Frag ", "onAttachFragment")
@@ -35,6 +36,7 @@ class LifeCycleFragment : Fragment() {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
         Log.e("LEfyCylce_Frag ", "onAttach Activity")
@@ -68,6 +70,7 @@ class LifeCycleFragment : Fragment() {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.e("LEfyCylce_Frag ", "onActivityCreated")
