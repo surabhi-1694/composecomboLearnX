@@ -26,13 +26,27 @@ class LifecycleActivity : AppCompatActivity() {
             insets
         }
         Log.e("LEfyCylce_ ", "Main_onCreate")
-        binding.btnnext.setOnClickListener { view ->
-            val intent = Intent(this, ActivityB::class.java)
-            startActivity(
-                intent
-            )
+        binding.apply {
+            btnnext.setOnClickListener { view ->
+                val intent = Intent(this@LifecycleActivity, ActivityB::class.java)
+                startActivity(
+                    intent
+                )
+            }
 
+            btnOpenFrag.setOnClickListener { view ->
+               loadFragment()
+
+            }
         }
+    }
+
+    private fun loadFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment,
+                LifeCycleFragment())
+            .commit()
+
 
     }
 

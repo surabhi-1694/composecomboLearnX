@@ -81,17 +81,18 @@ class NewsModel : ViewModel() {
 
                     newsApi.getNewsData(
                         sources = "techcrunch",
-                        apikey = "a6f7a32fb237403891836dd1dfa3cca1"
+                        apikey = ""
                     )
-
+//                a6f7a32fb237403891836dd1dfa3cca1
                 if (response.isSuccessful) {
-                    Log.e("response", "_Success ${response.body()}")
+                    Log.e("response", "_zzSuccess ${response.body()}")
                     response.body()?.let { topnews ->
                         _topNewsResultMutableStateFlow.value = NetworkResponse.Success(topnews)
                         _topNewsArticlesMutableStateFlow.value = topnews.articles
                     }
                 } else {
                     Log.e("response", "_Failure ${response.message()}")
+                    Log.e("response", "_Failure_errorBody ${response.errorBody()?.toString()}")
                     _topNewsResultMutableStateFlow.value = NetworkResponse.Error(response.message())
                 }
             } catch (e: Exception) {

@@ -91,6 +91,7 @@ fun commonLoginField(modifier: Modifier,
                 R.string.loginButton
             )
         ) {
+
             if(emailLogin.isNotEmpty()|| pwd.isNotEmpty()){
                 //onclick
                 authViewModel.login(emailLogin,pwd){authResult,status,msg->
@@ -114,6 +115,8 @@ fun commonLoginField(modifier: Modifier,
     }
 
 }
+
+
 
 
 //to set size of colum use parent's modifier as it is sub child ,
